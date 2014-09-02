@@ -1,0 +1,31 @@
+
+<a href="javascript:;" onclick="AddTabRow(<?= $tab_num ?>);">добавить</a>
+<table width="100%" border="1" cellpadding="0" cellspacing="0" id="tabble_tab_<?=$tab_num ?>">
+
+	<thead>
+		<tr>
+			<?
+			foreach ($filds as $fild) {
+				if ($fild['name_function'] != 'Hidden' && $fild['name_function'] != '---')
+					echo TagConstructor::ClouseTag('th', $fild['label']);
+			}
+			?>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($value as $v) {
+			?>
+			<?=
+			view::template(
+							ROOT_PATH . Config::ITEM_TEAMPLATE_PATH . "item_content_table_row.phtml", array(
+					'filds' => $filds,
+					'v' => $v)
+			);
+			?>
+
+		<? } ?>
+
+
+
+	</tbody>
+</table>

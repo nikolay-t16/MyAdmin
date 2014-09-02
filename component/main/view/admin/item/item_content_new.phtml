@@ -1,0 +1,77 @@
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		if(location.href.indexOf('#')>0)
+			ClickOnTab(location.href.substring(location.href.indexOf('#')+1));
+		$(".tabNavigation li a").click(function() {
+			var id = this.href.substr(this.href.search('#') + 1);
+			if(id)
+				ClickOnTab(id);
+		});
+
+	});
+
+	function ClickOnTab(id){
+// после нажатия на ссылку
+			$(".tabNavigation li").removeClass("selected"); // убираем у всех класс active
+			$(this).parents("li").addClass("selected"); //добавлям класс active списку того элемента, на который нажимали
+
+			$(".tab_cont").hide();
+			$("#tab_cont_" + id).show();
+	}
+	function AddTabRow(tabNum) {
+		$.post("<?= app::I()->MakeUrl(isset($module_name) ? $module_name : '', 'add_tab_row', array('admin' => '', 'view' => 'NO_TEMPLATE')) ?>", {tab_num: tabNum, id_item:<?= $id_item ? $id_item : "''" ?>},
+		function(data) {
+			$("#tabble_tab_" + tabNum + " tbody").append(data);
+		});
+	}
+</script>
+<form action="" name="admin" method="post" enctype="multipart/form-data">
+    <div class="tabs Grid">
+        <ul class="tabNavigation">
+			<?php
+			foreach ($param['tabs'] as $k => $v)
+				if (isset($param['param'][$v['id']])) {
+					?>
+		            <li id="tab_<?= $k ?>">
+		                <a href="#<?= $k ?>">
+		<?= $v['label'] ?>
+		                </a>
+		            </li>
+	<?php } ?>
+        </ul>
+
+        <div class="containers">
+            <div id="tab_cont_fixed">
+				<?=
+				view::template(
+						ROOT_PATH . "/component/main/view/admin/item/item_content.phtml", array(
+					'filds' => $param['param'][0],
+					'value' => isset($param['value'][0]) ? $param['value'][0] : array())
+				);
+				?>
+            </div>
+			<?php
+			$i = 0;
+			foreach ($param['tabs'] as $k => $v)
+				if (isset($param['param'][$k])) {
+					?>
+					<div class="tab_cont" id="tab_cont_<?= $k ?>" <?= $i ? 'style="display:none;"' : '' ?>>
+						<?=
+						view::template(
+								ROOT_PATH . $v['shablon'], array(
+							'filds' => $param['param'][$k],
+							'value' => isset($param['value'][$k]) ? $param['value'][$k] : array(),
+							'tab_num' => $k)
+						);
+						?>
+		            </div>
+					<?php $i++;
+				}
+			?>
+
+        </div>
+        <input type="submit" value="сохранить">
+    </div>
+</form>

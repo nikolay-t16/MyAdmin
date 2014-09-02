@@ -1,0 +1,20 @@
+<html>
+    <head>
+		<?php if (isset($shablon_name['head'])) include ROOT_PATH . $shablon_name['head']; ?>
+    </head>
+	<body>
+		<h1 id="head">Панель управления</h1>
+		<?= app::I()->StartModule('modules', 'menu', array('admin' => '', 'view' => 'NO_TEMPLATE', 'id_module' => isset($id_module) ? $id_module : 0)); ?>
+		<div id="content" class="container_16 clearfix">
+			<? if (isset($page_h1)) { ?>
+				<h1>
+					<?= $page_h1 ?>
+				</h1>
+			<? } ?>
+			<?php if (isset($shablon_name['content'])) include ROOT_PATH . $shablon_name['content']; ?>
+		</div>
+		<div id="foot">
+			<?php if (isset($shablon_name['botom'])) include ROOT_PATH . $shablon_name['botom']; ?>
+		</div>
+    </body>
+</html>

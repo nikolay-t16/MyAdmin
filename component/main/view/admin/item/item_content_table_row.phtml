@@ -1,0 +1,18 @@
+<tr>
+	<?php
+	foreach ($filds as $fild)
+		if (($fild['name_function'])) {
+			$fild['label'] = '';
+			$val = isset($v[$fild['name_fild']]) ? $v[$fild['name_fild']] : '';
+			$fild['name_fild'] = $fild['type'] . '[' . $v['id'] . '][' . $fild['name_fild'] . ']';
+			$func_name = WithStr::ToPascal($fild['name_function']);
+			if ($func_name !== '---') {
+				$val_tag = AdminForm::I()->$func_name($fild, $val);
+				if ($func_name != 'Hidden')
+					echo TagConstructor::ClouseTag('td', $val_tag, array('valign' => 'top'));
+				else
+					echo $val_tag;
+			}
+		}
+	?>
+</tr>

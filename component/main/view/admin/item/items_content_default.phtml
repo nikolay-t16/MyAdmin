@@ -1,0 +1,6 @@
+<td width="3%">
+	<?= $it['id'] ?>
+</td>
+<td>
+	<?= app::I()->StartModule($module_name, 'preview', $it + array('admin' => '', 'view' => 'NO_TEMPLATE')) ?>
+</td>

@@ -1,0 +1,53 @@
+<?
+/**
+ * Описание шаблона items_content.phtml
+ * @var array $t_head Заголовки таблицы (id, Название, ...)
+ * @var array $items Элементы
+ * @var array $body_values Ячейки которые должны быть отображены в списке
+ *
+ * используемые шаблоны:
+ *
+
+ * search_params.phtml										- шаблон формы поиска;
+ * items_content_actions_default.phtml		- панель действий по умолчанию;
+ * items_content_thead_customizing.phtml	- заголовок таблицы;
+ * items_content_customizing.phtml				- строка таблицы;
+ * items_content_row_action_default.phtml	- действия над строкой;
+ * @author Терещенко Н.И. 2013 12 26
+ */
+include ROOT_PATH . '/component/main/view/admin/search_params.phtml';
+/**
+ *
+ */
+if (isset($shablon_name['admin_action_panel']))
+	include ROOT_PATH . $shablon_name['admin_action_panel'];
+else
+	include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_actions_default.phtml';
+?>
+
+
+<table class="items" width="90%"  border="1" cellpadding="0" cellspacing="0" align="center"  >
+	<?
+	if (isset($t_head))
+		include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_thead_customizing.phtml';
+	?>
+
+	<tbody>
+
+			<?php
+			$i=0;
+			foreach ($items as $num_row=>$it) {?>
+
+		<tr<?=( $i%2 ) ? ' class="color"':'' ?>>
+			<td width="3%"><?=$i+1?></td>
+				<?
+				if (isset($body_values))
+					include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_customizing.phtml';
+				else
+					include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_default.phtml';
+				include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_row_action_default.phtml';
+				?>
+			</tr>
+		<?php $i++;} ?>
+	</tbody>
+</table>

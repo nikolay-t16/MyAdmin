@@ -1,0 +1,12 @@
+<ul id="navigation">
+    <? foreach ($menu as $id => $it) { ?>
+        <li>
+            <?=($id == $id_module ? '<span class="active">' : '') ?>
+                <a href="?admin&module=<?=$it['name_module'] ?>">
+                    <?=$it['label_module'] ?>
+                </a>
+
+	    <?=($id == $id_module ? '</span>' : '') ?>
+        </li>
+    <? } ?>
+</ul>

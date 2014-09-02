@@ -1,0 +1,56 @@
+
+<div style="margin: 5px 0pt;">
+    <p>
+        <a style="margin-bottom:10px"
+           class="ctr_padding ctr_add"
+           href="<?= app::I()->MakeUrl($_REQUEST['module'], 'add_param', array('id_module' => $_REQUEST['id']))
+?>">
+			Добавить
+        </a>
+    </p>
+</div>
+<form action="" method="post">
+    <table align="center" width="100%">
+
+        <thead>
+            <tr>
+                <?php foreach ($filds as $fild) {?>
+                    <th <?=$fild['Field'] == 'id' ? '' : '' ?> align="center" >
+<?= $fild['Field'] ?>
+                </th>
+                <?php } ?>
+                <th width="10">
+                    Действия
+                </th>
+            </tr>
+            </thead>
+            <?php foreach ($param as $par) {
+ ?>
+              <tbody>
+                <tr>
+<?php foreach ($filds as $fild) { ?>
+                    <td align="center" >
+                                  <?= AdminFormParam::I()->$fild['Field'](
+                            $par['type'] . '[' . $par['name_fild'] . ']', isset($par[$fild['Field']]) ? $par[$fild['Field']] : '') ?>
+                </td>
+<?php } ?>
+                <td>
+                    <a class="edit" href="<?= app::I()->MakeUrl($_REQUEST['module'], add_param, array('admin' => '', 'id_module' => $_REQUEST['id'], 'name' => $par['name_fild'], 'id_param' => $par['id'])) ?>">
+
+                    </a>
+                    <a class="delete" href="javascript: Remove( '<?= 'поле ' . $par['name_fild'] . ' поле так же будет удалено из таблицы' ?>','<?= app::I()->MakeUrl($_REQUEST['module'], 'delete_param', array('admin', 'id' => $_REQUEST['id'], 'delete' => $par['id'], 'name' => $par['name_fild'])) ?>')">
+
+                    </a>
+
+                </td>
+            </tr>
+
+<?php } ?>
+            <tr >
+                <td></td>
+                <td><input type="submit" value="сохранить"></td>
+            </tr>
+
+        </tbody>
+    </table>
+</form>

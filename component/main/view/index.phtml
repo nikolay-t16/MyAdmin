@@ -1,0 +1,83 @@
+<html>
+
+    <head>
+        <?php if (isset($shablon_name['head'])) include ROOT_PATH. $shablon_name['head']; ?>
+    </head>
+
+    <body>
+    <body>
+
+        <!-- Top line begins -->
+        <div id="top">
+            <?php if (isset($shablon_name['top'])) include ROOT_PATH. $shablon_name['top']; ?>
+
+        </div>
+        <!-- Top line ends -->
+
+
+        <!-- Sidebar begins -->
+        <div id="sidebar">
+            <div class="mainNav">
+                <div class="user">
+                    <a title="" class="leftUserDrop"><img src="images/user.png" alt="" /><span><strong>3</strong></span></a><span>Eugene</span>
+                    <ul class="leftUser">
+                        <li><a href="#" title="" class="sProfile">My profile</a></li>
+                        <li><a href="#" title="" class="sMessages">Messages</a></li>
+                        <li><a href="#" title="" class="sSettings">Settings</a></li>
+                        <li><a href="#" title="" class="sLogout">Logout</a></li>
+                    </ul>
+                </div>
+
+                <!-- Responsive nav -->
+                <div class="altNav">
+                    <div class="userSearch">
+                        <form action="">
+                            <input type="text" placeholder="search..." name="userSearch" />
+                            <input type="submit" value="" />
+                        </form>
+                    </div>
+
+                    <!-- User nav -->
+                    <ul class="userNav">
+                        <li><a href="#" title="" class="profile"></a></li>
+                        <li><a href="#" title="" class="messages"></a></li>
+                        <li><a href="#" title="" class="settings"></a></li>
+                        <li><a href="#" title="" class="logout"></a></li>
+                    </ul>
+                </div>
+
+                <!-- Main nav -->
+
+                <?= app::I()->StartModule('modules', 'menu', array('admin' => '', 'view' => 'NO_TEMPLATE', 'id_module' => isset($id_module) ? $id_module : 0)); ?>
+
+            </div>
+
+            <!-- Secondary nav -->
+            <div class="secNav">
+                <div class="secWrapper">
+                    <?php if (isset($shablon_name['dop_menu'])) include ROOT_PATH . $shablon_name['dop_menu']; ?>
+                </div> 
+
+                <div class="clear"></div>
+            </div>
+        </div>
+        <!-- Sidebar ends -->
+
+
+        <!-- Content begins -->    
+        <div id="content">
+            <?php if (isset($shablon_name['content'])) include ROOT_PATH . $shablon_name['content']; ?>
+
+
+        </div>
+        <!-- Content ends -->
+
+    </body>
+
+    <div id="foot">
+        <?php if (isset($shablon_name['botom'])) include ROOT_PATH. $shablon_name['botom']; ?>
+    </div>
+
+</body>
+
+</html>

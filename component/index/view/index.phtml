@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<? if (isset($shablon_name['head'])) include ROOT_PATH . $shablon_name['head']; ?>
+	</head>
+	<body>
+
+		<? if (isset($shablon_name['top'])) include ROOT_PATH . $shablon_name['top']; ?>
+		<? if (isset($shablon_name['content'])) include ROOT_PATH . $shablon_name['content']; ?>
+		<? if (isset($shablon_name['botom'])) include ROOT_PATH . $shablon_name['botom']; ?>
+
+	</body>
+</html>

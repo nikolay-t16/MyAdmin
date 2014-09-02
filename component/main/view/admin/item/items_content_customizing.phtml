@@ -1,0 +1,25 @@
+<?
+/**
+ * Описание шаблона items_content_customizing.phtml
+ * Панель действий по умолчанию.
+ * @var string $module_name Имя модуля;
+ * @var array $body_values ячейки строки,
+ * array(
+ * width-ширина ячейки,
+ * field - поле,
+ * view_helper (func_name- имя функции, obj-обьект )
+ * );
+ * @author Терещенко Н.И. 2013 12 26
+ */
+?>
+<? foreach ($body_values as $body_val) { ?>
+	<td <?= isset($body_val['width']) ? 'width="' . $body_val['width'] . '%"' : '' ?>>
+		<?
+		if (isset($body_val['view_helper'])) {
+			$func = $body_val['view_helper']['func_name'];
+			echo $body_val['view_helper']['obj']->$func($it,$body_val['field'],$body_val['view_helper']['param']);
+		}else
+			echo $it[$body_val['field']]
+		?>
+	</td>
+<? } ?>

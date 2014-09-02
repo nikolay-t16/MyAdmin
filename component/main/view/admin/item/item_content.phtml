@@ -1,0 +1,14 @@
+<?
+
+/**
+ *
+ */
+foreach ($filds as $fild)
+	if ($fild['name_function'] && $fild['name_function'] != '---') {
+		$val = isset($value[$fild['type']][$fild['name_fild']]) ? $value[$fild['type']][$fild['name_fild']] : '';
+		$fild['name_fild'] = $fild['type'] . '[' . $fild['name_fild'] . ']';
+		echo '<div style=" margin: 20px;margin-left: 30px;">';
+		$fName = WithStr::ToPascal($fild['name_function']);
+		echo AdminForm::I()->$fName($fild, $val);
+		echo '</div>';
+	}

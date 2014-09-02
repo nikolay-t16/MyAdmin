@@ -1,0 +1,23 @@
+<?
+$url_add = app::I()->MakeUrl(
+				$module_name,
+				isset($it['add_action']) ? $it['add_action'] : 'add',
+				array('admin' => '', 'id' => $it['id'])
+);
+$url_del = app::I()->MakeUrl(
+				$module_name,
+				isset($it['del_action']) ? $it['del_action'] : 'delete',
+				array('admin' => '', 'id' => $it['id'])
+);
+$del_inf = isset($it['del_inf']) ? $it['del_inf'] : isset($it['name']) ? $it['name'] : '';
+?>
+<td align="center" width="15%">
+	<a class="edit" href="<?= $url_add ?>" title="<?= isset($it['name']) ? $it['name'] : '' ?>">
+		Редактировать
+	</a>
+</td>
+<td align="center" width="10%">
+	<a class="delete" href="javascript:;" onclick="Remove('<?= $del_inf ?>', '<?= $url_del ?>')" title="<?= isset($it['name']) ? $it['name'] : '' ?>">
+		Удалить
+	</a>
+</td>

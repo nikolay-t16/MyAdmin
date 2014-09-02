@@ -1,0 +1,69 @@
+<div class="wrapper">
+	<form id="edit_form" enctype="multipart/form-data" method="post" name="admin" action="">
+		<?
+		foreach ($param['modules'] as $module)
+			if (isset($param['module_action'][$module['id']])) {
+				?>
+
+				<div class="widget">
+					<div class="whead"><h6><?= $module['label_module'] ?></h6><div class="clear"></div></div>
+					<table width="100%" cellspacing="0" cellpadding="0" class="tDefault">
+						<thead>
+							<tr>
+								<td>Id</td>
+								<td>Название</td>
+								<td>Доступ</td>
+
+							</tr>
+						</thead>
+						<tbody>
+							<?
+							foreach ($param['module_action'][$module['id']] as $action) {
+								$val = $param['group_rights'][$action['id']]['access'];
+								$param_for_select = array('name_fild' => $param['group_rights'][$action['id']]['id']);
+								if ($action['for_all']) {
+									$val = 1;
+									$param_for_select['atributs'] = array('disabled' => 'disabled');
+								}
+								?>
+								<tr>
+									<td width="3%"><?= $param['group_rights'][$action['id']]['id'] ?></td>
+									<td>
+
+										<?= $action['label_action'] ?> ( <?= $action['name_action'] ?> )
+
+									</td>
+									<td width="15%" align="center">
+										<?= AdminForm::I()->SelectYesNo($param_for_select, $val) ?>
+										<?= isset($param_for_select['atributs']['disabled']) ? AdminForm::I()->Hidden($param_for_select, 1) : '' ?>
+									</td>
+								</tr>
+							<? } ?>
+
+
+
+						</tbody>
+					</table>
+				</div>
+			<? } ?>
+		<div id="tab_cont_fixed">
+			<div class="wrapper">
+				<div class="formRow noBorderB">
+					 <a href="javascript:;" onclick="document.getElementById('edit_form').submit();
+												return false;" class="buttonM bBlue" title="Сохранить">
+						<span class="icon-checkmark-3"></span>
+						<span>Сохранить</span>
+					</a>
+					<a href="" class="buttonM bRed" title="Отменить">
+						<span class="icon-x"></span>
+						<span>Отменить</span>
+					</a>
+
+					<div class="clear"></div>
+
+				</div>
+
+			</div>
+		</div>
+	</form>
+</div>
