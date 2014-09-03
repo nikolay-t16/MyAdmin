@@ -87,7 +87,7 @@ class ControllerAdmin extends ControllerSuper {
 		$vParam['module_name'] = $this->ModuleName;
 		$vParam['t_head'] = array('Id', 'Название');
 		$vParam['page_h1'] = $this->ModuleParam['param']['label_module'];
-		$vShab['content'] = ITEM_TEAMPLATE_PATH . 'items_content.phtml';
+		$vShab['content'] = Config::ITEM_TEAMPLATE_PATH . 'items_content.phtml';
 	}
 
 	/**
@@ -116,7 +116,7 @@ class ControllerAdmin extends ControllerSuper {
 		$vParam['param'] = $params;
 		$vParam['id_item'] = $param['id'];
 		$vParam['module_name'] = $this->ModuleName;
-		$vShab['content'] = ITEM_TEAMPLATE_PATH . 'item_content_new.phtml';
+		$vShab['content'] = Config::ITEM_TEAMPLATE_PATH . 'item_content_new.phtml';
 	}
 
 	/**
@@ -137,7 +137,7 @@ class ControllerAdmin extends ControllerSuper {
 		$row = $this->GetModel()->AddTabRow(array('id_m' => $param['id_item']), $param['tab_num']);
 		$vParam['filds'] = $this->GetModel()->GetTabFilds($param['tab_num']);
 		$vParam['v'] = $row;
-		$vShab['content'] = ITEM_TEAMPLATE_PATH . 'item_content_table_row.phtml';
+		$vShab['content'] = Config::ITEM_TEAMPLATE_PATH . 'item_content_table_row.phtml';
 	}
 
 	/**

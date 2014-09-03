@@ -1,20 +1,20 @@
 <?php
+
 include 'Config.php';
 define(ROOT_PATH, __DIR__);
-define(ITEM_TEAMPLATE_PATH, '/component/main/view/admin/item/');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-//$mtime=microtime();
+
 // <editor-fold defaultstate="collapsed" desc="Автозагрузка классов">
 function ApplicationAutoload($className) {
 	if (!class_exists($className)) {
 		if (class_exist($className))
 			include_once class_exist($className);
-		else{
+		else {
 			echo '<pre>';
-		echo "$className класс не найден\n";
-		debug_print_backtrace();
-		echo '</pre>';
+			echo "$className класс не найден\n";
+			debug_print_backtrace();
+			echo '</pre>';
 		}
 	}
 }
@@ -37,4 +37,3 @@ function class_exist($className) {
 spl_autoload_register('ApplicationAutoload');
 // </editor-fold>
 echo app::I()->IndexRun();
-//echo microtime()-$mtime;

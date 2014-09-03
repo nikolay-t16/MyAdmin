@@ -87,7 +87,7 @@ class ControllerAdminModule extends ControllerAdmin {
         $vParam['items'] = $items;
         //$vParam['db'] = $this->db;
         $vParam['module_name'] = $this->ModuleName;
-        $vShab['content'] = ITEM_TEAMPLATE_PATH . 'items_content.phtml';
+        $vShab['content'] = Config::ITEM_TEAMPLATE_PATH . 'items_content.phtml';
     }
 
     /**
@@ -109,7 +109,7 @@ class ControllerAdminModule extends ControllerAdmin {
         $vParam['param'] = $params;
         $vParam['id_item'] = $param['id'];
         $vParam['module_name'] = $this->ModuleName;
-        $vShab['content'] = ITEM_TEAMPLATE_PATH . 'item_content_new.phtml';
+        $vShab['content'] = Config::ITEM_TEAMPLATE_PATH . 'item_content_new.phtml';
     }
 
     public function PreviewAction($param, &$vParam = array(), &$vShab = array()) {

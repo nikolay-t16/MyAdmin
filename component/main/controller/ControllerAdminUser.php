@@ -36,7 +36,7 @@ class ControllerAdminUser extends ControllerAdmin {
         $vParam['items'] = $items;
         //$vParam['db'] = $this->db;
         $vParam['module_name'] = $this->ModuleName;
-        $vShab['content'] = ITEM_TEAMPLATE_PATH . 'items_content.phtml';
+        $vShab['content'] = Config:: ITEM_TEAMPLATE_PATH . 'items_content.phtml';
         $vShab['dop_menu'] = '/component/main/view/menu/dop_menu_admin.phtml';
     }
 
@@ -45,7 +45,7 @@ class ControllerAdminUser extends ControllerAdmin {
         $vParam['items'] = $items;
         $vParam['items_ident'] = 'id_group';
         $vParam['module_name'] = $this->ModuleName;
-        $vShab['content'] = ITEM_TEAMPLATE_PATH . 'items_content.phtml';
+        $vShab['content'] = Config:: ITEM_TEAMPLATE_PATH . 'items_content.phtml';
         $vShab['admin_action_panel'] = '/component/main/view/admin/admin_user/action_panel.phtml';
         $vShab['dop_menu'] = '/component/main/view/menu/dop_menu_admin.phtml';
     }
@@ -86,7 +86,7 @@ class ControllerAdminUser extends ControllerAdmin {
         $vParam['param'] = $params;
         $vParam['id_item'] = $param['id'];
         $vParam['module_name'] = $this->ModuleName;
-        $vShab['content'] = ITEM_TEAMPLATE_PATH . 'item_content_new.phtml';
+        $vShab['content'] = Config:: ITEM_TEAMPLATE_PATH . 'item_content_new.phtml';
     }
 
 

@@ -22,14 +22,14 @@ include ROOT_PATH . '/component/main/view/admin/search_params.phtml';
 if (isset($shablon_name['admin_action_panel']))
 	include ROOT_PATH . $shablon_name['admin_action_panel'];
 else
-	include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_actions_default.phtml';
+	include ROOT_PATH . Config:: ITEM_TEAMPLATE_PATH . 'items_content_actions_default.phtml';
 ?>
 
 
 <table class="items" width="90%"  border="1" cellpadding="0" cellspacing="0" align="center"  >
 	<?
 	if (isset($t_head))
-		include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_thead_customizing.phtml';
+		include ROOT_PATH . Config:: ITEM_TEAMPLATE_PATH . 'items_content_thead_customizing.phtml';
 	?>
 
 	<tbody>
@@ -42,10 +42,10 @@ else
 			<td width="3%"><?=$i+1?></td>
 				<?
 				if (isset($body_values))
-					include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_customizing.phtml';
+					include ROOT_PATH . Config:: ITEM_TEAMPLATE_PATH . 'items_content_customizing.phtml';
 				else
-					include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_default.phtml';
-				include ROOT_PATH . ITEM_TEAMPLATE_PATH . 'items_content_row_action_default.phtml';
+					include ROOT_PATH . Config:: ITEM_TEAMPLATE_PATH . 'items_content_default.phtml';
+				include ROOT_PATH . Config:: ITEM_TEAMPLATE_PATH . 'items_content_row_action_default.phtml';
 				?>
 			</tr>
 		<?php $i++;} ?>

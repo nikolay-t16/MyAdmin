@@ -70,7 +70,7 @@ class ControllerAdminContentTree extends ControllerAdmin {
 		$vParam['pid'] = $param['pid'];
 		$vShab['admin_action_panel'] = $this->ViewPath . 'action_panel/action_panel.phtml';
 		$vParam['items'] = $this->GetModel()->GetItems($filter);
-		$vShab['content'] = ITEM_TEAMPLATE_PATH . 'items_content.phtml';
+		$vShab['content'] = Config::ITEM_TEAMPLATE_PATH . 'items_content.phtml';
 	}
 
 	public function AddAction($param = array(), &$vParam = array(), &$vShab = array()) {
