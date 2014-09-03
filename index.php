@@ -8,9 +8,11 @@ error_reporting(E_ALL);
 // <editor-fold defaultstate="collapsed" desc="Автозагрузка классов">
 function ApplicationAutoload($className) {
 	if (!class_exists($className)) {
-		if (class_exist($className))
+		$class_path = class_exist($className);
+
+		if ($class_path) {
 			include_once class_exist($className);
-		else {
+		} else {
 			echo '<pre>';
 			echo "$className класс не найден\n";
 			debug_print_backtrace();
