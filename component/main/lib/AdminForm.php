@@ -448,28 +448,25 @@ class AdminForm extends FormConstructor {
 		if (isset($param['param'])) {
 			$param['value'] = $value;
 			$file_list = glob(ROOT_PATH . $param['param']);
-			foreach ($file_list as $k => $v) {
-				if (strpos($v, 'Admin')) {
-					unset($file_list[$k]);
-				}
-			}
-			if ($file_list) {
 
-				foreach ($file_list as $key => $value) {
-					preg_match_all('/\/([^\/]+)$/', $value, $array);
-					$array[1][0] = str_replace('_admin', '', $array[1][0]);
-					$array[1][0] = str_replace('Admin', '', $array[1][0]);
-					$array[1][0] = str_replace('.php', '', $array[1][0]);
-					$select[$array[1][0]] = $array[1][0];
-				}
-				//foreach ($select as $k =>$v)
-				//WithStr::ToPascal ($string);
-				$param['select'] = $select;
+
+			$file_for_select = array();
+			foreach ($file_list as $v) {
+				$f_n_arr = explode('/', $v);
+				$f_n = $f_n_arr[count($f_n_arr) - 1];
+				$f_n = str_replace('Admin', '', $f_n);
+				$f_n = str_replace('.php', '', $f_n);
+				$file_for_select[$f_n] = $f_n;
+			}
+			if ($file_for_select) {
+				ksort($file_for_select);
+				$param['select'] = $file_for_select;
 				return $this->Select($param, $value);
-			} else
-				return 'не правильно указан путь к папке "' . ROOT_PATH . $param['param'] . '"';
+			} else {
+				return 'Не правильно указан путь к папке или папка пустая "' . ROOT_PATH . $param['param'] . '"';
+			}
 		} else
-			return 'не указанны параметры для ' . $param['name_fild'];
+			return 'Не указанны параметры для ' . $param['name_fild'];
 	}
 
 	/**
