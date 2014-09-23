@@ -237,6 +237,7 @@ class app {
 	 * запускает модуль на основе данных из REQUEST
 	 */
 	public function IndexRun() {
+		$this->RedirectDefault();
 		if (isset($this->_REQUEST['url'])) {
 			$param = $this->GetModelUrl()->GetRequestParamByUrl($this->_REQUEST['url']);
 			if(!$param){
@@ -255,7 +256,14 @@ class app {
 										isset($this->_REQUEST['module']) && $this->_REQUEST['module'] ? $this->_REQUEST['module'] : 'index', isset(app::I()->_REQUEST['action']) ? app::I()->_REQUEST['action'] : 'index', $this->_REQUEST
 		);
 	}
-
+	/**
+	 * redirect 301 from www.domen to domen
+	 */
+	public function RedirectDefault() {
+		if(strpos($_SERVER['HTTP_HOST'], 'www.')===0){
+			$this->Redirect301To(str_replace('www.', '', 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
+		}
+	}
 	/**
 	 * выполняет действие модуля
 	 * @param string $module_name
