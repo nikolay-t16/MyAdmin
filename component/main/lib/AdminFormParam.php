@@ -87,8 +87,8 @@ class AdminFormParam extends AdminForm {
         if (!self::$functions) {
             $subject = file_get_contents(ROOT_PATH . '/component/main/lib/AdminForm.php');
             preg_match_all('/public function +(.+) *\(/', $subject, $matchesarray);
-            self::$functions = array_merge(array(0=>'---'),$matchesarray[1]);
-
+						sort($matchesarray[1]);
+						self::$functions = array_merge(array(0=>'---'),$matchesarray[1]);
         }
 				$atributs=array('style'=>'width:97px;');
         return $this->MakeSelect(self::$functions, $name . '[name_function]', '', $value,'','',$atributs);
