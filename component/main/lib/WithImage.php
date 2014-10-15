@@ -1,4 +1,5 @@
 <?php
+
 /* библиотека работы с изображениями */
 require_once ROOT_PATH . '/component/main/lib/Image transform/Transform.php';
 /*
@@ -12,11 +13,13 @@ require_once ROOT_PATH . '/component/main/lib/Image transform/Transform.php';
  * @author терещенко
  */
 class WithImage extends WithFile {
+
 	/**
 	 * обьект класса
 	 * @var WithFile
 	 */
 	protected static $Instanse;
+
 	/**
 	 * Класс для работы с изображениями
 	 * @var Image_Transform_Driver_GD
@@ -38,6 +41,7 @@ class WithImage extends WithFile {
 
 		return self::$Instanse;
 	}
+
 	/**
 	 * Загружает фото и делает из него фотографии с изменеными размерами ( не сохраняет пропорции)
 	 * @param source $tmpFileName
@@ -49,8 +53,7 @@ class WithImage extends WithFile {
 	public function UploadImgAndMakeDopScale($tmpFileName, $fileName, $dopImgParamArray) {
 		if (parent::UploadFile($tmpFileName, $fileName)) {
 			$this->MakeResize($fileName, $dopImgParamArray);
-		}
-		else
+		} else
 			return 0;
 	}
 
@@ -72,6 +75,7 @@ class WithImage extends WithFile {
 			}
 		}
 	}
+
 	/**
 	 * Уменьшает и обрезает фотографию в заданный прямоугольник.
 	 * @param string $filePath
@@ -82,37 +86,36 @@ class WithImage extends WithFile {
 	 * array('x'=>'100','y'=>'100')
 	 *
 	 */
-	public function CropTo($filePath, $newFilePath, $param,$rights=0777) {
+	public function CropTo($filePath, $newFilePath, $param, $rights = 0777) {
 		$this->ImageTransformGd->load($filePath);
 		$r = $this->ImageTransformGd->getImageSize();
 		$p_x = $param['x'] / $r[0];
 		$p_y = $param['y'] / $r[1];
-		if($p_x<1&&$p_y<1){
-		if ($p_x > $p_y) {
-			$this->ImageTransformGd->scaleByX($param['x']);
-			$crop_x = 0;
-			$crop_y = round(($this->ImageTransformGd->getNewImageHeight() - $param['y']) / 2);
-		} else {
-			$this->ImageTransformGd->scaleByY($param['y']);
-			$crop_x = round(($this->ImageTransformGd->getNewImageWidth() - $param['x']) / 2);
-			$crop_y = 0;
-		}
-		$this->ImageTransformGd->crop($param['x'], $param['y'], $crop_x, $crop_y);
-
-
+		if ($p_x < 1 && $p_y < 1) {
+			if ($p_x > $p_y) {
+				$this->ImageTransformGd->scaleByX($param['x']);
+				$crop_x = 0;
+				$crop_y = round(($this->ImageTransformGd->getNewImageHeight() - $param['y']) / 2);
+			} else {
+				$this->ImageTransformGd->scaleByY($param['y']);
+				$crop_x = round(($this->ImageTransformGd->getNewImageWidth() - $param['x']) / 2);
+				$crop_y = 0;
+			}
+			$this->ImageTransformGd->crop($param['x'], $param['y'], $crop_x, $crop_y);
 		}
 		$this->ImageTransformGd->save($newFilePath);
 		chmod($newFilePath, $rights);
 	}
-		/**
+
+	/**
 	 * Уменьшает фотографию что бы вместить в заданный прямоугольник.
 	 * @param type $filePath
 	 * @param type $newFilePath
 	 * @param type $param
 	 */
-	public function FitTo($filePath, $newFilePath, $param,$rights=0777) {
+	public function FitTo($filePath, $newFilePath, $param, $rights = 0777) {
 		$this->ImageTransformGd->load($filePath);
-		$this->ImageTransformGd->fit($param['x'],$param['y']);
+		$this->ImageTransformGd->fit($param['x'], $param['y']);
 		$this->ImageTransformGd->save($newFilePath);
 		chmod($newFilePath, $rights);
 	}
@@ -128,8 +131,7 @@ class WithImage extends WithFile {
 	public function UploadImgAndMakeDopResize($tmpFileName, $fileName, $dopImgParamArray) {
 		if (parent::UploadFile($tmpFileName, $fileName)) {
 			$this->MakeResize($fileName, $dopImgParamArray);
-		}
-		else
+		} else
 			return 0;
 	}
 
@@ -151,6 +153,7 @@ class WithImage extends WithFile {
 			}
 		}
 	}
+
 	/**
 	 * Возвращает тип картинки ( .jpg .png .gif .swf )
 	 * @param type $fName
@@ -159,7 +162,7 @@ class WithImage extends WithFile {
 	public function GetImgType($fName) {
 		$type = '';
 		$fName = strtolower($fName);
-		if (strpos($fName, '.jpg') || strpos($fName, '.jpeg') )
+		if (strpos($fName, '.jpg') || strpos($fName, '.jpeg'))
 			$type = 'jpg';
 		if (strpos($fName, '.png'))
 			$type = 'png';
@@ -169,23 +172,25 @@ class WithImage extends WithFile {
 			$type = 'swf';
 		return $type;
 	}
-	public function DelImg($filePath){
-		$this->DelFile(ROOT_PATH."$filePath.jpg");
-		$this->DelFile(ROOT_PATH."$filePath.png");
-		$this->DelFile(ROOT_PATH."$filePath.gif");
-		$this->DelFile(ROOT_PATH."$filePath.swf");
+
+	public function DelImg($filePath) {
+		$this->DelFile(ROOT_PATH . "$filePath.jpg");
+		$this->DelFile(ROOT_PATH . "$filePath.png");
+		$this->DelFile(ROOT_PATH . "$filePath.gif");
+		$this->DelFile(ROOT_PATH . "$filePath.swf");
 	}
+
 	/**
 	 * Добавляет к пути до картинки тип ( .jpg .png .gif .swf )
 	 * @param string $filePath
 	 * @return string
 	 */
 	public function GetImgDir($filePath, $forAdmin = 0) {
-		if(!$forAdmin){
-                  $imgPath= 'http://www.' . Config::SITE_DOMAIN_NAME.$filePath;
-                  }else{
-                    $imgPath = $filePath;
-                  }
+		if (!$forAdmin) {
+			$imgPath = 'http://www.' . Config::SITE_DOMAIN_NAME . $filePath;
+		} else {
+			$imgPath = $filePath;
+		}
 		if (is_file(ROOT_PATH . "$filePath.jpg"))
 			return "$imgPath.jpg";
 		if (is_file(ROOT_PATH . "$filePath.jpeg"))
