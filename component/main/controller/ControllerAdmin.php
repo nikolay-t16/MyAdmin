@@ -108,7 +108,7 @@ class ControllerAdmin extends ControllerSuper {
 		}
 
 		$params = $this->GetModel()->GetAdminItem($param['id']);
-		$vParam['page_h1'] = '<a href="' . app::I()->MakeUrl($this->ModuleName, 'index') . '">' . $this->ModuleParam['param']['label_module'] . '</a> / ';
+		$vParam['page_h1'] = '<a href="' . app::I()->MakeUrl($this->ModuleName, 'index',array('admin'=>'')) . '">' . $this->ModuleParam['param']['label_module'] . '</a> / ';
 		if (!isset($param['id']) || !$param['id']) {
 			$vParam['page_h1'] .= 'Добавить';
 		} else {
