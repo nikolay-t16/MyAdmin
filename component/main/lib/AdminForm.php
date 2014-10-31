@@ -356,13 +356,13 @@ class AdminForm extends FormConstructor {
 
 
 		if (isset($p['multiple'])) {
-			echo $img_dir;
 			$file_arr = WithFile::I()->GetFilesFormPath(
-							ROOT_PATH . Config::FOLDERS_OF_IMG . $p['img_path'] . '/' . $_REQUEST['id'] . "/$name_field" . "_*");
-			if ($file_arr)
+							ROOT_PATH . Config::FOLDERS_OF_IMG . $p['img_path'] . '/' . $_REQUEST['id'] . "/$name_field" . "_[!_].*");
+			if ($file_arr) {
 				foreach ($file_arr as $f_name) {
 					$tag.=self::ShowInputImage(Config::FOLDERS_OF_IMG . $p['img_path'] . "/{$_REQUEST['id']}/$f_name");
 				}
+			}
 			$p['multiple'] = 'multiple';
 			$param['name_fild'].='[]';
 		} else {
