@@ -216,7 +216,7 @@ class WithFile {
 	public function GetFilesFormPath($path) {
 
 		$res = array();
-		$file_list = glob($path);
+		$file_list = glob($path,GLOB_BRACE);
 		if ($file_list) {
 			foreach ($file_list as $key => $value) {
 				preg_match_all('/\/([^\/]+)$/', $value, $array);
