@@ -75,20 +75,24 @@ class FormConstructor extends TagConstructor {
 
 	/**
 	 * формирует тэг textarea
-	 * @param array $param
-	 * @param string/int $value
-	 * @return string
+	 * @param string $name
+	 * @param string $label
+	 * @param string $value
+	 * @param string/srray $atributs
+	 * @return type
 	 */
-	public function Textarea($param, $value = '') {
+	public function Textarea($name, $label, $value = '', $atributs = array()) {
 		$tag = '';
-		if ($param['param'] && !is_array($param['param']))
-			$param['param'] = $this->MakeParametrs($param['param']);
-		if ($param['label'])
-			$tag = $this->Label($param['label'], $param['name_fild']);
-		$tag.= $this->ClouseTag('textarea', $value, array('name' => $this->VarName($param['name_fild'])) + (array) $param['param']);
+		if ($atributs && !is_array($atributs)) {
+			$atributs = $this->MakeParametrs($atributs);
+		}
+
+		if ($label) {
+			$tag = $this->Label($label, $name);
+		}
+		$tag.= $this->ClouseTag('textarea', $value, array('name' => $this->VarName($name)) + (array) $atributs);
 		return $tag;
 	}
-
 
 	/**
 	 * Формирует тэг select

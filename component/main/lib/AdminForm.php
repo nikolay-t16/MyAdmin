@@ -270,7 +270,7 @@ class AdminForm extends FormConstructor {
 	}
 
 	public function Textarea($param, $value = '') {
-		return parent::Textarea($param, $value);
+		return parent::Textarea($param['name_fild'], $param['label'], $value, $param['param']);
 	}
 
 //</editor-fold>
