@@ -40,7 +40,7 @@ class ControllerSuper {
      * @param array $param
      * controller parameters
      */
-    function __construct(&$param) {
+    public function __construct(&$param) {
         $this->ModuleName   = $param['param']['name_module'];
         $this->ModuleParam  = $param;
         $this->ModuleId     = $param['param']['id'];
