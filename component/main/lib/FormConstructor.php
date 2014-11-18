@@ -96,35 +96,35 @@ class FormConstructor extends TagConstructor {
 
 	/**
 	 * Формирует тэг select
-	 * @param array $param
-	 * select:
-	 * value: Значение ( передается в некоторых функциях )<br>
-	 * label: Заголовк<br>
-	 * name_fild: Имя поля<br>
-	 * atributs: Атрибуты<br>
-	 * Принимает параметры
-	 * Параметры для select
+	 * @param string $name
+	 * Имя ( лат )
+	 * @param string $label
+	 * Лейбел
+	 * @param array $options
+	 * массив значений
 	 * @param string $value
-	 * Значение
+	 * Значение ключа
+	 * @param array $atributs
+	 * атрибуты
 	 * @return string
 	 */
-	public function Select($param, $value = '') {
+	public function Select($name, $label, $options, $value, $atributs) {
 		$tag = '';
 		$option = '';
-		if (isset($param['select']) && $param['select']) {
-			foreach ($param['select'] as $key => $select_value) {
-				if (isset($param['value']) && $key == $param['value'] || !isset($param['value']) && $key == $value) {
-					$option.=$this->ClouseTag('option', $select_value, array('selected' => 'selected', 'value' => $key));
-				} else {
-					$option.=$this->ClouseTag('option', $select_value, array('value' => $key));
+		if ($options && is_array($options)) {
+			foreach ($options as $key => $select_value) {
+				$p = array('value' => $key);
+				if($key==$value){
+					$p['selected'] = 'selected';
 				}
+				$option.=$this->ClouseTag('option', $select_value, $p);
 			}
 		}
-		if (isset($param['label'])) {
-			$tag.= $this->Label($param['label'], $param['name_fild']);
+		if ($label) {
+			$tag.= $this->Label($label, $name);
 		}
-		$param['atributs']['name'] = $this->VarName($param['name_fild']);
-		$tag.= $this->ClouseTag('select', $option, $param['atributs']);
+		$atributs['name'] = $this->VarName($name);
+		$tag.= $this->ClouseTag('select', $option, $atributs);
 		return $tag;
 	}
 
