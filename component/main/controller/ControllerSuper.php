@@ -46,7 +46,7 @@ class ControllerSuper {
         $this->ModuleId     = $param['param']['id'];
         $this->ModelName    = $param['param']['model'];
         $this->ViewPath     = '/component/'.$this->ModuleName.'/view/';
-        self::$ViewMainPath     = '/component/main/view/';
+        self::$ViewMainPath = '/component/main/view/';
     }
     /**
      * Object model
