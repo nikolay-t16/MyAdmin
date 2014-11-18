@@ -113,7 +113,10 @@ class ControllerAdmin extends ControllerSuper {
 			$vParam['page_h1'] .= 'Добавить';
 		} else {
 			$item = $this->GetModel()->GetItem($param['id']);
-			$vParam['page_h1'] .='Редактировать - '. $item['name'];
+			$vParam['page_h1'] .='Редактировать';
+			if (isset($item['name'])) {
+				$vParam['page_h1'] .=' - ' . $item['name'];
+			}
 		}
 
 		$vParam['title'] = $this->ModuleParam['param']['label_module'] . ' - Добавить\Редактировать ';
