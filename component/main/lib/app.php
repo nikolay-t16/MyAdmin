@@ -177,7 +177,7 @@ class app {
 	 */
 	public function GetModel($modelName) {
 		if (!isset($this->Models[$modelName])) {
-			$param = $this->GetModelModels()->GetItem($modelName);
+			$param = $this->GetModelModels()->GetItemByName($modelName);
 			$this->Models[$modelName] = $this->InitModel($param['model']['model_class'], $param);
 		}
 		return $this->Models[$modelName];
@@ -199,9 +199,7 @@ class app {
 	 */
 	public function GetAdminModel($modelName) {
 		if (!isset($this->ModelsAdmin[$modelName])) {
-
-			$param = $this->GetModelModels()->GetItem($modelName);
-
+			$param = $this->GetModelModels()->GetItemByName($modelName);
 			$model_name = $param['model']['model_class'];
 			$model_name = preg_replace('/Model/', 'ModelAdmin', $model_name, 1);
 			$this->ModelsAdmin[$modelName] = $this->InitModel($model_name, $param);
