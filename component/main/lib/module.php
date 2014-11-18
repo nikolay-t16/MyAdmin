@@ -65,7 +65,7 @@ class module {
 
     /**
      *
-     * @return model_module
+     * @return ModelModule
      */
     protected function GetModuleModel(){
         return app::I()->GetModel('module');
@@ -139,18 +139,7 @@ class module {
         else
             app::error_report('класс контроллера "' . $controllerName . '" не опредделен для модуля "' . $this->ModuleName . '"');
     }
-    /**
-     * инициализирует модель
-     * @param string $modelName
-     * @param array $tablesArray
-     * @return model
-     */
-    protected function InitModel($modelName,array $tablesArray) {
-        if (class_exist($modelName))
-            return new $modelName($tablesArray);
-        else
-            app::error_report('класс модели "' . $modelName . '" не опредделен для модуля "' . $this->ModuleName . '"');
-    }
+
 
     /**
      * доступ к модели модуля

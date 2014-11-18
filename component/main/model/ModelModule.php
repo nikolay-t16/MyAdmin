@@ -42,11 +42,27 @@ class ModelModule extends Model {
 	protected function GetShabModel() {
 		return app::I()->GetModel('module_shablon');
 	}
+	/**
+	 *
+	 * @return ModelModels
+	 */
+	protected function GetModelModels(){
+		return app::I()->GetModel('models');
+	}
 
+	/**
+	 *
+	 * @param string $moduleName
+	 * @return array
+	 */
 	public function GetItem($moduleName) {
 
 		$param['param'] = $this->GetItems("name_module='$moduleName'", 1);
 		$param['param'] = $param['param'][0];
+		$m = $this->GetModelModels()->GetItem($param['param']['model']);
+		if ($m) {
+			$param['param']['model'] = $m['model']['name'];
+		}
 
 		if ($param)
 			$param['shablons'] = $this->GetModeleShablon()->GetShablons($param['param']['id']);
