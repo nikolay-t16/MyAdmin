@@ -424,6 +424,32 @@ class AdminForm extends FormConstructor {
 	}
 
 	/**
+	 * Формирует тег select список значений формируется моделью
+	 * @param array $param
+	 * Параметры. Обязательные model - модель, func - метод, не обязятельный type - тип модели (admin)
+	 * @param string $value
+	 * Значение
+	 * @return string
+	 */
+	public function SelectByModel($param, $value = '') {
+		$p = WithStr::MakeAssocArray($param['param']);
+		$options = array();
+		if (isset($p['model'], $p['func'])) {
+			if (isset($p['type']) && $p['type'] == 'admin') {
+				$model = app::I()->GetAdminModel($p['model']);
+			} else {
+				$model = app::I()->GetModel($p['model']);
+			}
+			$func = $p['func'];
+			$options = $model->$func($p);
+		} else {
+			echo 'Не все обязательные параметры заданы ( model,func )';
+		}
+		unset($p['func'], $p['model'], $p['type']);
+		return $this->Select($param['name_fild'], $param['label'], $options, $value, $p);
+	}
+
+	/**
 	 * Выпадающий список файлов, нужно указать директорию вида<br/>
 	 * /component/main/view/*.phtml
 	 * @param array $param
@@ -434,11 +460,12 @@ class AdminForm extends FormConstructor {
 	public function SelectFile($param, $value = '') {
 
 		if (isset($param['param'])) {
+			$atributs = $this->MakeParametrs($param['param']);
 			$path = ROOT_PATH . $param['param'];
 			$param['value'] = $value;
-			$param['select'] = array('---');
-			$param['select'] = array_merge($param['select'], WithFile::I()->GetFilesFormPath($path));
-			return $this->Select($param, $value);
+			$options = array('---');
+			$options['select'] = array_merge($options, WithFile::I()->GetFilesFormPath($path));
+			return parent::Select($param['name_fild'], $param['label'], $options, $value, $atributs);
 		} else
 			return 'не указанны параметры для ' . $param['name_fild'];
 	}
@@ -460,8 +487,7 @@ class AdminForm extends FormConstructor {
 			}
 			if ($file_for_select) {
 				ksort($file_for_select);
-				$param['select'] = $file_for_select;
-				return $this->Select($param, $value);
+				return $this->Select($param['name_fild'], $param['label'], $file_for_select, $value, array());
 			} else {
 				return 'Не правильно указан путь к папке или папка пустая "' . ROOT_PATH . $param['param'] . '"';
 			}
@@ -494,11 +520,12 @@ class AdminForm extends FormConstructor {
 	 */
 	public function SelectModel($param, $value = '') {
 		$models = app::I()->GetModel('models')->GetItems();
-		foreach ($models as $v)
+		$select = array();
+		foreach ($models as $v) {
 			$select[$v['name']] = $v['name'];
-		$param['select'] = $select;
-		$param['value'] = $value;
-		return $this->Select($param, $value);
+		}
+		$param['param'] = WithStr::MakeAssocArray($param['param']);
+		return $this->Select($param['name_fild'], $param['label'], $select, $value, $param['param']);
 	}
 
 	/**
@@ -573,11 +600,9 @@ class AdminForm extends FormConstructor {
 	 * @return string
 	 */
 	public function SelectYesNo($param, $value = '') {
-
 		$select[0] = 'нет';
 		$select[1] = 'да';
-
-		return $this->Select(array('select' => $select, 'value' => $value) + $param, $value);
+		return $this->Select($param['name_fild'], $param['label'], $select, $value, $param['param']);
 	}
 
 	public function SelectFunction($param, $value) {
