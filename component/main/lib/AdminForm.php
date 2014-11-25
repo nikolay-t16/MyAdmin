@@ -468,8 +468,6 @@ class AdminForm extends FormConstructor {
 			if ($files) {
 				$options = array_merge($options, $files);
 			}
-			echo $path;
-			app::PrintPre(WithFile::I()->GetFilesFormPath($path));
 			return parent::Select($param['name_fild'], $param['label'], $options, $value, $atributs);
 		} else
 			return 'не указанны параметры для ' . $param['name_fild'];
