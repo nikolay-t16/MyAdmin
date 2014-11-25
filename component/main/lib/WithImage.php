@@ -203,4 +203,28 @@ class WithImage extends WithFile {
 			return "$imgPath.swf";
 	}
 
+	/**
+	 * создает дополнительную фотграфию если она не существует
+	 * @param string $filePath
+	 * путь до файла : /img/test/1/img
+	 * @param string $originFilePath
+	 * путь до оригинального файла : /img/test/1/img
+	 * @param string $func
+	 * CropTo или FitTo
+	 * @param array $param
+	 * array('x'=>'100','y'=>'100')
+	 * @return string
+	 */
+	public function MakeImgIfNeed($filePath, $originFilePath, $func, $width, $height) {
+
+		$path = $this->GetImgDir($filePath);
+		if (!$path && $this->GetImgDir($originFilePath)) {
+			$path_origin = $this->GetImgDir($originFilePath);
+			$type = $this->GetImgType($path_origin);
+			@$this->$func(ROOT_PATH . "$originFilePath.$type", ROOT_PATH . "$filePath.$type", array('x' => $width, 'y' => $height));
+			$path = "$filePath.$type";
+		}
+		return $path;
+	}
+
 }
