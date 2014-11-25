@@ -464,7 +464,12 @@ class AdminForm extends FormConstructor {
 			$path = ROOT_PATH . $param['param'];
 			$param['value'] = $value;
 			$options = array('---');
-			$options['select'] = array_merge($options, WithFile::I()->GetFilesFormPath($path));
+			$files = WithFile::I()->GetFilesFormPath($path);
+			if ($files) {
+				$options = array_merge($options, $files);
+			}
+			echo $path;
+			app::PrintPre(WithFile::I()->GetFilesFormPath($path));
 			return parent::Select($param['name_fild'], $param['label'], $options, $value, $atributs);
 		} else
 			return 'не указанны параметры для ' . $param['name_fild'];
