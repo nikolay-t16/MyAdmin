@@ -293,7 +293,7 @@ class AdminForm extends FormConstructor {
 			$href = self::ClouseTag(
 											'a', 'Удалить', array(
 									'href' => 'javascript:;',
-									'onclick' => 'RemoveImg(\'' . $imgDir . '\',' . $id . '\')'
+									'onclick' => 'RemoveImg(\'' . $imgDir . '\',\'' . $id . '\')'
 											)
 			);
 
@@ -314,7 +314,7 @@ class AdminForm extends FormConstructor {
 			$href = self::ClouseTag(
 											'a', 'Удалить', array(
 									'href' => 'javascript:;',
-									'onclick' => 'RemoveImg(\'' . $imgDir . '\',' . $id . '\')'
+									'onclick' => 'RemoveImg(\'' . $imgDir . '\',\'' . $id . '\')'
 											)
 			);
 			$tag = self::ClouseTag('p', $swf) . self::ClouseTag('p', $href);
