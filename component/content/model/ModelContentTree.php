@@ -32,13 +32,17 @@ class ModelContentTree extends Model {
 		return $this->GetItems($where, $limit);
 	}
 
-	public function GetActiveItemsCount() {
-		return $this->GetCount('`active`=1');
+		public function GetActiveItemsCount($pId = 0) {
+		if ($pId) {
+			return $this->GetCount('`active`=1 and p_id=' . $pId);
+		} else {
+			return $this->GetCount('`active`=1');
+		}
 	}
 
-	public function GetPagesCount() {
-		$count = $this->GetActiveItemsCount();
-		return ceil($count / $this->ItemsOnPage);
+	public function GetPagesCount($pId, $itemsPerPage=0) {
+		$count = $this->GetActiveItemsCount($pId);
+		return ceil($count / $itemsPerPage?:$this->ItemsOnPage);
 	}
 
 	public function MakeBreadcrumbs($id) {
