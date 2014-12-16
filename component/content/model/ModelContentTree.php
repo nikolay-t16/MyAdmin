@@ -32,7 +32,7 @@ class ModelContentTree extends Model {
 		return $this->GetItems($where, $limit);
 	}
 
-		public function GetActiveItemsCount($pId = 0) {
+	public function GetActiveItemsCount($pId = 0) {
 		if ($pId) {
 			return $this->GetCount('`active`=1 and p_id=' . $pId);
 		} else {
@@ -40,22 +40,24 @@ class ModelContentTree extends Model {
 		}
 	}
 
-	public function GetPagesCount($pId, $itemsPerPage=0) {
+	public function GetPagesCount($pId, $itemsPerPage=-1) {
+		if($itemsPerPage==0){
+			return 0;
+		}
 		$count = $this->GetActiveItemsCount($pId);
-		return ceil($count / $itemsPerPage?:$this->ItemsOnPage);
+		return ceil($count / ($itemsPerPage!=-1?$itemsPerPage:$this->ItemsOnPage));
 	}
 
 	public function MakeBreadcrumbs($id) {
 		$res = array();
 		$el_id = $id;
 		while ($el_id && $el = $this->GetItem($el_id)) {
-			if ($el_id&&$el_id!=$id) {
+			if ($el_id && $el_id != $id) {
 				if ($el_id == 1)
 					$url = '/';
 				else
 					$url = app::I()->MakeUrl('content_tree', 'index', array('id' => $el_id));
-			}
-			else
+			} else
 				$url = '';
 			$res[] = array(
 					'url' => $url,
