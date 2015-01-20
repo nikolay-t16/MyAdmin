@@ -29,7 +29,7 @@ caption {
 }
 
 #content {
-	width:960px;
+	width:1120px;
 	position:relative;
 	zoom:1;
 }
@@ -120,7 +120,7 @@ th, td {
 	border:0;
 	margin:10px auto 0 auto;
 	padding:5px 30px;
-	width:940px;
+	width:1100px;
 }
 
 /* Nagivation */
@@ -129,7 +129,7 @@ th, td {
 	-moz-border-radius-bottomleft:10px;
 	margin:0 auto 10px auto;
 	padding:10px 30px;
-	width:940px;
+	width:1100px;
 }
 
 #navigation > li {
@@ -153,7 +153,7 @@ th, td {
 
 #foot {
 	padding:5px 30px;
-	width:940px;
+	width:1110px;
 	margin:10px auto;
 	-moz-border-radius-topright: 10px;
 	-moz-border-radius-bottomleft: 10px;
