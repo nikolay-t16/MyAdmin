@@ -664,8 +664,9 @@ class AdminForm extends FormConstructor {
 	 * @return string
 	 */
 	public function SelectFromSlovar($param, $value = 0) {
-		$this->parametrs[$param['param']] = self::GetModelSlovar()->GetSlovar($param['param']);
-		return $this->MakeSelect($this->parametrs[$param['param']], $param['name_fild'], $param['label'], $value, 'name', 'id');
+		$p = $this->MakeParametrs($param['param']);
+		$slovar = app::I()->GetModel('slovar')->GetSlovarItems($p['id_slovar']);
+		return $this->MakeSelect($slovar, $param['name_fild'], $param['label'], $value, 'name', 'id');
 	}
 
 	public function ChekboxYesNo($param, $value = 0) {
