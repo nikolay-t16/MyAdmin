@@ -81,12 +81,7 @@ class ModelAdminModule extends ModelAdmin {
         return $params;
     }
 
-    public function GetTabFilds($idTab){
-        return $this->GetModelModelRow()->GetItems("id_m=1 and id_tab=$idTab order by r_sort asc");
-
-    }
-
-    /**
+     /**
      * добваить новый модуль
      * @param array $param
      * @return <type>

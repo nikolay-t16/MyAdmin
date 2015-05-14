@@ -4,9 +4,13 @@ class ModelAdminModuleParam extends ModelAdmin {
 
 	/**
 	 * Параметры полей модели
-	 * @param int $idModel
-	 * id модели
-	 * @return array
+	 * @param type $idModel
+	 * id модель
+	 * @param type $idTab
+	 * id вкладки
+	 * @param type $print
+	 * вывести запрос
+	 * @return type
 	 */
 	public function GetItems($idModel, $idTab = 0, $print = 0) {
 		$param = array();
