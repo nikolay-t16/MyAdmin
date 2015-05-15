@@ -1,7 +1,5 @@
-
 <a href="javascript:;" onclick="AddTabRow(<?= $tab_num ?>);">добавить</a>
-<table width="100%" border="1" cellpadding="0" cellspacing="0" id="tabble_tab_<?=$tab_num ?>">
-
+<table width="100%" border="1" cellpadding="0" cellspacing="0" id="tabble_tab_<?= $tab_num ?>">
 	<thead>
 		<tr>
 			<?
@@ -10,6 +8,7 @@
 					echo TagConstructor::ClouseTag('th', $fild['label']);
 			}
 			?>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,8 +23,5 @@
 			?>
 
 		<? } ?>
-
-
-
 	</tbody>
 </table>

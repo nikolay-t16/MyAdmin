@@ -16,6 +16,15 @@ function RemoveImg(img, id) {
 	}
 
 }
+
+function RemoveRow(obj, url) {
+	if (window.confirm("Вы действительно хотите удалить?")) {
+		$(obj).parents('tr:first').remove();
+		$.post(url, function(data) {
+			alert(data);
+		});
+	}
+}
 /**
  * Транслит значения другого плоя
  * @param string to
