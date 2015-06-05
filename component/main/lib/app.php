@@ -357,23 +357,23 @@ class app {
 			$moduleName = 'index';
 		if (!$actionName)
 			$actionName = 'index';
-		$url = $this->GetModelUrl()->GetUrlByRequestParam($moduleName, $actionName, $arrayParam);
-		if (!$url) {
-			$url = Config::SITE_URL . '?';
-			if (isset($arrayParam['admin'])){
-				$url.='admin&';
-				unset($arrayParam['admin']);
-			}
-
+		if (isset($arrayParam['admin'])) {
+			unset($arrayParam['admin']);
+			$url = '/?admin&';
 			$url .= "module=$moduleName&action=$actionName";
-
-			if ($arrayParam)
+			if ($arrayParam) {
 				$url.='&' . (WithArray::MakeUrlStrSet($arrayParam));
-		}
-
-
-		if ($this->GetSelectCityTranslit()&&Config::ID_DEFAULT_CITY!=$this->GetSelectCityId()) {
-			$url = str_replace('www.', $this->GetSelectCityTranslit() . '.', $url);
+			}
+			unset($arrayParam['admin']);
+		} else {
+			$url = $this->GetModelUrl()->GetUrlByRequestParam($moduleName, $actionName, $arrayParam);
+			if (!$url) {
+				$url = '/?';
+				$url .= "module=$moduleName&action=$actionName";
+				if ($arrayParam) {
+					$url.='&' . (WithArray::MakeUrlStrSet($arrayParam));
+				}
+			}
 		}
 		return $url;
 	}
