@@ -414,13 +414,8 @@ class AdminForm extends FormConstructor {
 	 * @return string
 	 */
 	public function SelectArray($param, $value = '') {
-
-
 		$arr = WithStr::MakeAssocArray($param['param'], ',', '=>');
-
-		$param['value'] = $value;
-		$param['select'] = $arr;
-		return $this->Select($param, $value);
+		return $this->Select($param['name_fild'], $param['label'], $arr, $value, array());
 	}
 
 	/**
