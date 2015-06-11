@@ -239,10 +239,10 @@ class app {
 		if (isset($this->_REQUEST['url'])) {
 			$param = $this->GetModelUrl()->GetRequestParamByUrl($this->_REQUEST['url']);
 			if(!$param){
-				app::I()->Redirect301To('/404.html');
+				app::I()->Redirect301To('/404');
 			}
 			$this->_REQUEST+=(array) $param;
-		} else {
+		} elseif(!isset ($this->_REQUEST['admin'])) {
 			$url = $this->GetModelUrl()->GetUrlByRequestParam(
 							isset($this->_REQUEST['module']) && $this->_REQUEST['module'] ? $this->_REQUEST['module'] : 'index', isset(app::I()->_REQUEST['action']) ? app::I()->_REQUEST['action'] : 'index', $this->_REQUEST
 			);
