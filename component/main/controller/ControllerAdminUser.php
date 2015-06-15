@@ -100,8 +100,20 @@ class ControllerAdminUser extends ControllerAdmin {
     public function LogautAction($param, &$vParam = array(), &$vShab = array()){
        $this->GetModel()->Logaut();
        app::I()->RedirectToModule('', '',array('admin'=>''));
-    }
+		 }
 
-
+	public function AddAction($param, &$vParam = array(), &$vShab = array()) {
+		if (isset($param['adm_param'])) {
+			if ($param['adm_param']['main']['password']) {
+				if (trim($param['adm_param']['main']['password']) == trim($param['adm_param']['password_confirm'])) {
+					$param['adm_param']['main']['password'] = md5(trim($param['adm_param']['main']['password']));
+				} else {
+					unset($param['adm_param']['main']['password']);
+					$vParam['alert_msg'] = 'Пароли не совпадают';
+				}
+			}
+		}
+		parent::AddAction($param, $vParam, $vShab);
+	}
 
 }
