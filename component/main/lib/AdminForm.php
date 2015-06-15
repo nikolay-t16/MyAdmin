@@ -134,18 +134,28 @@ class AdminForm extends FormConstructor {
 	 * html прудставление тэга input
 	 */
 	public function Password($param, $value = '') {
-		$class = uniqid();
+		// TODO: доделать проверку пароля;
+		$id = uniqid('pas2');
+		$class = 'check_pass';
 		$tag = '';
 		$labl = parent::Label('Введите пароль', $param['name_fild']);
 		$tag.=$this->ClouseTag('div', $labl, array('style' => 'width: 25%;float: left;padding-bottom: 10px;'));
-		$div = parent::Input('password_first', ' ', 'text', array(), 0);
+		$div = parent::Input($param['name_fild'], '', 'password', array('id'=>$id), 0);
 		$tag.=$this->ClouseTag('div', $div, array('style' => 'width: 75%;float: left;padding-bottom: 10px;'));
 		$tag.='<br/>';
 		$labl = parent::Label('Повторите пароль', $param['name_fild']);
 		$tag.=$this->ClouseTag('div', $labl, array('style' => 'width: 25%;float: left;'));
-		$div = parent::Input('password_confirm', '', 'password', array(), 0);
+		$div = parent::Input(
+						'password_confirm',
+						'',
+						'password',
+						array(
+								'class'=>$class,
+								'data-id_check'=>$id,
+								'onchange'=>"CheckPass(this);",
+								'onkeypress'=>"CheckPass(this);",
+								), 0);
 		$tag.=$this->ClouseTag('div', $div, array('style' => 'width: 75%;float: left;'));
-		$tag.=$this->Hidden($param, $value);
 
 		return $tag;
 	}
