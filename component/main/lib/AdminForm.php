@@ -134,9 +134,7 @@ class AdminForm extends FormConstructor {
 	 * html прудставление тэга input
 	 */
 	public function Password($param, $value = '') {
-		// TODO: доделать проверку пароля;
 		$class = uniqid();
-		echo $class;
 		$tag = '';
 		$labl = parent::Label('Введите пароль', $param['name_fild']);
 		$tag.=$this->ClouseTag('div', $labl, array('style' => 'width: 25%;float: left;padding-bottom: 10px;'));
