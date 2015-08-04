@@ -56,7 +56,7 @@ class PHPMailer {
    * Sets the CharSet of the message.
    * @var string
    */
-  public $CharSet           = 'utf-8';
+  public $CharSet           = 'iso-8859-1';
 
   /**
    * Sets the Content-type of the message.
@@ -142,7 +142,7 @@ class PHPMailer {
    * is in a different directory than the PHP include path.
    * @var string
    */
-  public $PluginDir         = 'phpmailer/';
+  public $PluginDir         = '';
 
   /**
    * Sets the email address that a reading confirmation will be sent.
@@ -183,7 +183,7 @@ class PHPMailer {
    * Sets the default SMTP server port.
    * @var int
    */
-  public $Port          = 465;
+  public $Port          = 25;
 
   /**
    * Sets the SMTP HELO of the message (Default is $Hostname).
@@ -196,7 +196,7 @@ class PHPMailer {
    * Options are "", "ssl" or "tls"
    * @var string
    */
-  public $SMTPSecure    = 'ssl';
+  public $SMTPSecure    = '';
 
   /**
    * Sets SMTP authentication. Utilizes the Username and Password variables.
@@ -270,7 +270,7 @@ class PHPMailer {
   private   $CustomHeader   = array();
   private   $message_type   = '';
   private   $boundary       = array();
-  protected $language       = array('ru');
+  protected $language       = array();
   private   $error_count    = 0;
   private   $sign_cert_file = "";
   private   $sign_key_file  = "";
@@ -732,7 +732,7 @@ class PHPMailer {
   * @param string $lang_path Path to the language file directory
   * @access public
   */
-  function SetLanguage($langcode = 'ru', $lang_path = 'phpmailer/language/') {
+  function SetLanguage($langcode = 'en', $lang_path = 'language/') {
     //Define full set of translatable strings
     $PHPMAILER_LANG = array(
       'provide_address' => 'You must provide at least one recipient email address.',
@@ -1834,7 +1834,7 @@ class PHPMailer {
    */
   private function Lang($key) {
     if(count($this->language) < 1) {
-      $this->SetLanguage('ru'); // set the default language
+      $this->SetLanguage('en'); // set the default language
     }
 
     if(isset($this->language[$key])) {
@@ -2070,3 +2070,4 @@ class phpmailerException extends Exception {
     return $errorMsg;
   }
 }
+?>
