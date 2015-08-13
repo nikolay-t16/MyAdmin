@@ -683,4 +683,32 @@ class AdminForm extends FormConstructor {
 	}
 
 	// </editor-fold>
+
+	/**
+	 * Выбор даты<br/>
+	 *
+	 * @param array $param
+	 *
+	 * @param string $value
+	 * @return string
+	 */
+	public function DateTimePicker($param, $value = '') {
+		$tag = '';
+		if(!$value){
+			$value = WithDate::GetDateTime();
+		}
+		$p = array();
+		if (isset($param['label']) && $param['label'])
+			$tag = $this->Label($param['label'], $param['name_fild']);
+		if (isset($param['param']) && !is_array($param['param'])) {
+			$p = WithStr::MakeAssocArray($param['param']);
+		}
+		if (isset($p['class'])) {
+			$p['id'] .= ' datetimepicker';
+		} else {
+			$p['id'] = 'datetimepicker';
+		}
+		$tag.= $this->Input($param['name_fild'], $value, 'text', $p);
+		return $tag;
+	}
 }
