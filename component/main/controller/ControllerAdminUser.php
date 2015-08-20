@@ -79,7 +79,7 @@ class ControllerAdminUser extends ControllerAdmin {
         if (isset($param['adm_param'])) {
             $id = $this->GetModel()->AddGroupAdmin($param['adm_param']['group']);
             if ($id && !$param['adm_param']['group']['id_group'])
-                app::I()->RedirectToModule($this->ModuleName, 'add_group', array('id' => $id, 'admin' => ''));
+                Redirect::RedirectToModule($this->ModuleName, 'add_group', array('id' => $id, 'admin' => ''));
         }
         $params = $this->GetModel()->GetGroupAdminItem($param['id']);
         $vParam['title'] = $this->ModuleParam['param']['label_module'] . ' - Добавить\Редактировать ';
@@ -99,7 +99,7 @@ class ControllerAdminUser extends ControllerAdmin {
     }
     public function LogautAction($param, &$vParam = array(), &$vShab = array()){
        $this->GetModel()->Logaut();
-       app::I()->RedirectToModule('', '',array('admin'=>''));
+       Redirect::RedirectToModule('', '',array('admin'=>''));
 		 }
 
 	public function AddAction($param, &$vParam = array(), &$vShab = array()) {

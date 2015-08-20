@@ -58,11 +58,13 @@ class ControllerAdminModels extends ControllerAdmin {
 					$db = $param[0]['module_db'];
 					$this->GetModel()->alter_field($db, app::I()->_REQUEST['adm_param'], app::I()->_REQUEST['id_param']);
 
-					app::I()->RedirectToModule(
-							'modules', 'add_param', array(
-						"id_m" => $param['id_module'],
-						"name" => $param['adm_param']['field_name'][0],
-						'id_param' => $param['id_param']
+					Redirect::RedirectToModule(
+							'modules',
+							'add_param',
+									array(
+										"id_m"		 => $param['id_module'],
+										"name"		 => $param['adm_param']['field_name'][0],
+										'id_param' => $param['id_param']
 							)
 					);
 				}

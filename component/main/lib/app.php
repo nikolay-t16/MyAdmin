@@ -239,7 +239,7 @@ class app {
 		if (isset($this->_REQUEST['url'])) {
 			$param = $this->GetModelUrl()->GetRequestParamByUrl($this->_REQUEST['url']);
 			if(!$param){
-				app::I()->Redirect301To('/404');
+				Redirect::Redirect301To('/404');
 			}
 			$this->_REQUEST+=(array) $param;
 		} elseif(!isset ($this->_REQUEST['admin'])) {
@@ -247,7 +247,7 @@ class app {
 							isset($this->_REQUEST['module']) && $this->_REQUEST['module'] ? $this->_REQUEST['module'] : 'index', isset(app::I()->_REQUEST['action']) ? app::I()->_REQUEST['action'] : 'index', $this->_REQUEST
 			);
 			if ($url)
-				app::I()->Redirect301To($url);
+				Redirect::Redirect301To($url);
 		}
 
 		return $this->StartModule(
@@ -307,39 +307,6 @@ class app {
 	// </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc=" Url and redirect ">
 
-	/**
-	 * Редирект на модуль
-	 * @param string $moduleName
-	 * имя модуля
-	 * @param string $actionName
-	 * имя действия
-	 * @param array $paramArray
-	 * дополнительные параметры
-	 */
-	public function RedirectToModule($moduleName, $actionName, $paramArray = array()) {
-		$url = $this->MakeUrl($moduleName, $actionName, $paramArray);
-		$this->RedirectTo($url);
-	}
-
-	/**
-	 * Редирект на урл
-	 * @param string $url
-	 * урл
-	 */
-	public function RedirectTo($url) {
-		header("location: $url");
-	}
-
-	/**
-	 * Редирект на урл
-	 * @param string $url
-	 * урл
-	 */
-	public function Redirect301To($url) {
-		header("HTTP/1.1 301 Moved Permanently");
-		header("location: $url");
-		exit();
-	}
 
 	/**
 	 * Состовляет урл для модуля

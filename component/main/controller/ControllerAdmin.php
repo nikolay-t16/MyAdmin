@@ -104,7 +104,7 @@ class ControllerAdmin extends ControllerSuper {
 
 			$id = $this->GetModel()->AddAdmin($param['adm_param']);
 			if ($id && !$param['adm_param']['main']['id'])
-				app::I()->RedirectToModule($this->ModuleName, 'add', array('id' => $id, 'admin' => ''));
+				Redirect::RedirectToModule($this->ModuleName, 'add', array('id' => $id, 'admin' => ''));
 		}
 
 		$params = $this->GetModel()->GetAdminItem($param['id']);
@@ -137,7 +137,7 @@ class ControllerAdmin extends ControllerSuper {
 	 */
 	public function DeleteAction($param = array(), &$vParam = array(), &$vShab = array()) {
 		$this->GetModel()->delete($param['id']);
-		app::I()->RedirectToModule($this->ModuleName, 'index', array('admin' => ''));
+		Redirect::RedirectToModule($this->ModuleName, 'index', array('admin' => ''));
 	}
 
 	public function AddTabRowAction($param, &$vParam = array(), &$vShab = array()) {

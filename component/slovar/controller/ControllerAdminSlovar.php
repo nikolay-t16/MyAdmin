@@ -44,7 +44,7 @@ class ControllerAdminSlovar extends ControllerAdmin {
 	public function ItemsAction($param = array(), &$vParam = array(), &$vShab = array()) {
 		$id = isset($param['id']) ? $param['id'] : 0;
 		if (!$id) {
-			app::I()->RedirectToModule($this->ModuleName, 'index');
+			Redirect::RedirectToModule($this->ModuleName, 'index');
 		}
 		$vParam['id'] = $id;
 		$vParam['module_name'] = $this->ModuleName;

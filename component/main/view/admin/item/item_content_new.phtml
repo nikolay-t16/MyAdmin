@@ -26,6 +26,15 @@
 			$("#tabble_tab_" + tabNum + " tbody").append(data);
 		});
 	}
+function DeleteTabRow(obj, tabNum) {
+	if (window.confirm("Вы действительно хотите удалить?")) {
+		$(obj).parents('tr:first').remove();
+		$.post("<?= app::I()->MakeUrl(isset($module_name) ? $module_name : '', 'del_tab_row', array('admin' => '', 'view' => 'NO_TEMPLATE')) ?>", {tab_num: tabNum, id_item:<?= $id_item ? $id_item : "''" ?>},
+		function(data) {
+			$("#tabble_tab_" + tabNum + " tbody").append(data);
+		});
+	}
+}
 </script>
 <form action="" name="admin" method="post" enctype="multipart/form-data">
     <div class="tabs Grid">
