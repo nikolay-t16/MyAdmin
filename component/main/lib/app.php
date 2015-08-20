@@ -7,28 +7,6 @@ class app {
 	// <editor-fold defaultstate="collapsed" desc=" Подключение к базе ">
 
 	/**
-	 * название базы
-	 * @var PDO
-	 */
-	protected static $Db;
-
-	/**
-	 *
-	 * @return PDO
-	 */
-	public static function GetDb() {
-		return self::$Db;
-	}
-
-	protected function ConnectToDbPdo() {
-		try {
-			self::$Db = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . '', $this->db_login, $this->db_password);
-		} catch (PDOException $e) {
-			die("Error: " . $e->getMessage());
-		}
-	}
-
-	/**
 	 * подключение к базе
 	 */
 	protected function ConnectToDb() {
@@ -112,39 +90,44 @@ class app {
 	private function GetCOOKIE() {
 		$this->_COOKIE = $_COOKIE;
 	}
-	const SELECT_CITY ='select_city';
 
-	public function GetSelectCity(){
-		if(isset(app::I()->_REQUEST[self::SELECT_CITY])){
+	const SELECT_CITY = 'select_city';
+
+	public function GetSelectCity() {
+		if (isset(app::I()->_REQUEST[self::SELECT_CITY])) {
 			return app::I()->_REQUEST[self::SELECT_CITY];
-		}else{
+		} else {
 			return array();
 		}
 	}
-	public function GetSelectCityId(){
-		if($this->GetSelectCity()){
-			$city=$this->GetSelectCity();
+
+	public function GetSelectCityId() {
+		if ($this->GetSelectCity()) {
+			$city = $this->GetSelectCity();
 			return $city['id'];
-		}else{
+		} else {
 			return 0;
 		}
 	}
-	public function GetSelectCityTranslit(){
-		if($this->GetSelectCity()){
-			$city=$this->GetSelectCity();
+
+	public function GetSelectCityTranslit() {
+		if ($this->GetSelectCity()) {
+			$city = $this->GetSelectCity();
 			return $city['translit'];
-		}else{
+		} else {
 			return '';
 		}
 	}
-	public function GetSelectCityName(){
-		if($this->GetSelectCity()){
-			$city=$this->GetSelectCity();
+
+	public function GetSelectCityName() {
+		if ($this->GetSelectCity()) {
+			$city = $this->GetSelectCity();
 			return $city['name'];
-		}else{
+		} else {
 			return '';
 		}
 	}
+
 // </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc=" Работа с моделями ">
 
@@ -238,11 +221,11 @@ class app {
 		$this->RedirectDefault();
 		if (isset($this->_REQUEST['url'])) {
 			$param = $this->GetModelUrl()->GetRequestParamByUrl($this->_REQUEST['url']);
-			if(!$param){
+			if (!$param) {
 				Redirect::Redirect301To('/404');
 			}
 			$this->_REQUEST+=(array) $param;
-		} elseif(!isset ($this->_REQUEST['admin'])) {
+		} elseif (!isset($this->_REQUEST['admin'])) {
 			$url = $this->GetModelUrl()->GetUrlByRequestParam(
 							isset($this->_REQUEST['module']) && $this->_REQUEST['module'] ? $this->_REQUEST['module'] : 'index', isset(app::I()->_REQUEST['action']) ? app::I()->_REQUEST['action'] : 'index', $this->_REQUEST
 			);
@@ -254,14 +237,16 @@ class app {
 										isset($this->_REQUEST['module']) && $this->_REQUEST['module'] ? $this->_REQUEST['module'] : 'index', isset(app::I()->_REQUEST['action']) ? app::I()->_REQUEST['action'] : 'index', $this->_REQUEST
 		);
 	}
+
 	/**
 	 * redirect 301 from www.domen to domen
 	 */
 	public function RedirectDefault() {
-		if(strpos($_SERVER['HTTP_HOST'], 'www.')===0){
-			Redirect::Redirect301To(str_replace('www.', '', 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
+		if (strpos($_SERVER['HTTP_HOST'], 'www.') === 0) {
+			Redirect::Redirect301To(str_replace('www.', '', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']));
 		}
 	}
+
 	/**
 	 * выполняет действие модуля
 	 * @param string $module_name
@@ -306,7 +291,6 @@ class app {
 
 	// </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc=" Url and redirect ">
-
 
 	/**
 	 * Состовляет урл для модуля
@@ -378,7 +362,6 @@ class app {
 		$this->SId = session_id();
 
 		$this->InitModeleModels();
-
 	}
 
 	/**
@@ -401,14 +384,6 @@ class app {
 	}
 
 	/**
-	 * вывод сообщение об ошибке
-	 * @param string $mesadge
-	 */
-	static function error_report($mesadge) {
-		echo $mesadge;
-	}
-
-	/**
 	 * вывод в тегах pre
 	 * @param mix $mesadge
 	 */
@@ -416,15 +391,6 @@ class app {
 		echo '<pre>';
 		print_r($mesadge);
 		echo '</pre>';
-	}
-
-	/**
-	 * логирование ошибок
-	 * @param string $mesadge
-	 * @todo Написать функцию логирования
-	 */
-	static public function ErrorLog($mesadge) {
-		//
 	}
 
 }
