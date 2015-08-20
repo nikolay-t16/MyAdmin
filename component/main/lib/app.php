@@ -91,42 +91,6 @@ class app {
 		$this->_COOKIE = $_COOKIE;
 	}
 
-	const SELECT_CITY = 'select_city';
-
-	public function GetSelectCity() {
-		if (isset(app::I()->_REQUEST[self::SELECT_CITY])) {
-			return app::I()->_REQUEST[self::SELECT_CITY];
-		} else {
-			return array();
-		}
-	}
-
-	public function GetSelectCityId() {
-		if ($this->GetSelectCity()) {
-			$city = $this->GetSelectCity();
-			return $city['id'];
-		} else {
-			return 0;
-		}
-	}
-
-	public function GetSelectCityTranslit() {
-		if ($this->GetSelectCity()) {
-			$city = $this->GetSelectCity();
-			return $city['translit'];
-		} else {
-			return '';
-		}
-	}
-
-	public function GetSelectCityName() {
-		if ($this->GetSelectCity()) {
-			$city = $this->GetSelectCity();
-			return $city['name'];
-		} else {
-			return '';
-		}
-	}
 
 // </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc=" Работа с моделями ">
