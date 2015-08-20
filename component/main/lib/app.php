@@ -259,7 +259,7 @@ class app {
 	 */
 	public function RedirectDefault() {
 		if(strpos($_SERVER['HTTP_HOST'], 'www.')===0){
-			$this->Redirect301To(str_replace('www.', '', 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
+			Redirect::Redirect301To(str_replace('www.', '', 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
 		}
 	}
 	/**
