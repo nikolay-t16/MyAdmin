@@ -1,0 +1,27 @@
+<? $id = uniqid('yamap_id') ?>
+
+<script type="text/javascript">
+
+	ymaps.ready(init);
+	var newPlaceMark;
+	function init() {
+		// Создание экземпляра карты и его привязка к контейнеру с
+		// заданным id ("map").
+		myMap = new ymaps.Map('<?= $id ?>', {
+			center: [45.0594, 38.9997], // Краснодар
+			zoom: 11
+		});
+
+		newPlaceMark = new ymaps.Placemark([<?= $coord[0] ?>, <?= $coord[1] ?>], {}, {
+			draggable: true, // и их можно перемещать
+		});
+		newPlaceMark.events.add('dragend', function(e) {
+			var coords = newPlaceMark.geometry.getCoordinates();
+			$('#<?= $id_input ?>').attr('value', coords[0].toPrecision(6) + ' ' + coords[1].toPrecision(6));
+		});
+		myMap.geoObjects.add(newPlaceMark);
+
+
+	}
+</script>
+<section id="<?= $id ?>" style="width: 300px;height: 300px;"></section>

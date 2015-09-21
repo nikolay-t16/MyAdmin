@@ -711,4 +711,19 @@ class AdminForm extends FormConstructor {
 		$tag.= $this->Input($param['name_fild'], $value, 'text', $p);
 		return $tag;
 	}
+
+
+	public function YaMapPoint($param, $value) {
+		$coord = explode(' ', $value);
+		$res = '';
+		if (isset($param['label']) && $param['label']) {
+			$res .= $this->Label($param['label'], $param['name_fild']);
+		}
+		$id_input = uniqid('yamap_point_id');
+		$param['param'] = "id=>$id_input";
+		$res .= $this->Hidden($param, $value);
+		$res .= view::template(ROOT_PATH . '/component/main/view/admin/admin_form/YaMapPoint.phtml', array('coord' => $coord, 'id_input' => $id_input));
+		return $res;
+	}
+
 }
