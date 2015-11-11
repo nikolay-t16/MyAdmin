@@ -197,14 +197,12 @@ class ModelAdmin extends Model {
 				foreach ($fileName as $k => $v) {
 					if ($v) {
 						WithImage::I()->DelImg(ROOT_PATH . "/img/{$img_p['img_path']}/$id/$fieldName");
-
 						$type = WithImage::I()->GetImgType($v);
-
-						WithImage::I()->UploadFile(
-										$_FILES['adm_param']['tmp_name']['main'][$fieldName][$k], ROOT_PATH . "/img/{$img_p['img_path']}/$id/vrem.$type", 0777
-						);
-
 						$f_k = $this->MakeUniqNameForMultiImg(ROOT_PATH . "/img/{$img_p['img_path']}/$id/$fieldName" . "_", $type);
+						if (isset($img_p['fit']) || isset($img_p['crop'])) {
+							WithImage::I()->UploadFile(
+											$_FILES['adm_param']['tmp_name']['main'][$fieldName][$k], ROOT_PATH . "/img/{$img_p['img_path']}/$id/vrem.$type", 0777
+							);
 
 						if (isset($img_p['crop'])) {
 							$crop_p = explode(":", $img_p['crop']);
@@ -229,10 +227,17 @@ class ModelAdmin extends Model {
 						}
 						if (is_file(ROOT_PATH . "/img/{$img_p['img_path']}/$id/vrem.$type"))
 							unlink(ROOT_PATH . "/img/{$img_p['img_path']}/$id/vrem.$type");
-						if (!isset($img_p['fit']) && !isset($img_p['crop']))
+
+						}else{
+							if (!isset($img_p['fit']) && !isset($img_p['crop']))
 							WithImage::I()->UploadFile(
-											$_FILES['adm_param']['tmp_name']['main'][$fieldName], ROOT_PATH . "/img/$this->ModuleName/$id/$fieldName" . "_$f_k.$type", 0777
+											$_FILES['adm_param']['tmp_name']['main'][$fieldName][$k], ROOT_PATH . "/img/{$img_p['img_path']}/$id/$fieldName" . "_$f_k.$type", 0777
 							);
+						}
+
+
+
+
 					}
 				}
 			}
