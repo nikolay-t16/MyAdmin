@@ -4,23 +4,7 @@
  * клас реализуеший веб приложение
  */
 class App {
-	// <editor-fold defaultstate="collapsed" desc=" Подключение к базе ">
 
-	/**
-	 * подключение к базе
-	 */
-	protected function ConnectToDb() {
-
-		$dbh = mysql_connect(Config::DB_HOST, Config::DB_LOGIN, Config::DB_PASSWORD) or mysql_error();
-		echo mysql_error();
-		if (!$dbh)
-			die("Невозможно подключиться к базе данных");
-		mysql_select_db(Config::DB_NAME);
-		mysql_query('SET NAMES utf8');
-		mysql_query('SET CHARACTER SET utf8');
-	}
-
-	// </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc=" Служебные массивы ">
 	public $_REQUEST;
 	public $_GET;
