@@ -138,16 +138,6 @@ class ModelSuper {
 	}
 
 	/**
-	 * удаляет лишние слеши
-	 * @param string $str
-	 * @return string
-	 *
-	 */
-	protected function FromBase($str) {
-		return stripslashes($str);
-	}
-
-	/**
 	 * преобразует результат sql запроса в массив.
 	 * Если указанно имя метода, то выполняет метод над каждой строкой результата sql запроса
 	 * @param resource $result
