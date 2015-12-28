@@ -91,7 +91,6 @@ class app {
 		$this->_COOKIE = $_COOKIE;
 	}
 
-
 // </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc=" Работа с моделями ">
 
@@ -171,89 +170,6 @@ class app {
 	}
 
 	// </editor-fold>
-	// <editor-fold defaultstate="collapsed" desc=" Работа с модулями ">
-	/**
-	 * массив модулей
-	 * @var array
-	 */
-	protected $Modules = array();
-
-	/**
-	 * запускает модуль на основе данных из REQUEST
-	 */
-	public function IndexRun() {
-		$this->RedirectDefault();
-		if (isset($this->_REQUEST['url'])) {
-			$param = $this->GetModelUrl()->GetRequestParamByUrl($this->_REQUEST['url']);
-			if (!$param) {
-				Redirect::Redirect301To('/404');
-			}
-			$this->_REQUEST+=(array) $param;
-		} elseif (!isset($this->_REQUEST['admin'])) {
-			$url = $this->GetModelUrl()->GetUrlByRequestParam(
-							isset($this->_REQUEST['module']) && $this->_REQUEST['module'] ? $this->_REQUEST['module'] : 'index', isset(app::I()->_REQUEST['action']) ? app::I()->_REQUEST['action'] : 'index', $this->_REQUEST
-			);
-			if ($url)
-				Redirect::Redirect301To($url);
-		}
-
-		return $this->StartModule(
-										isset($this->_REQUEST['module']) && $this->_REQUEST['module'] ? $this->_REQUEST['module'] : 'index', isset(app::I()->_REQUEST['action']) ? app::I()->_REQUEST['action'] : 'index', $this->_REQUEST
-		);
-	}
-
-	/**
-	 * redirect 301 from www.domen to domen
-	 */
-	public function RedirectDefault() {
-		if (strpos($_SERVER['HTTP_HOST'], 'www.') === 0) {
-			Redirect::Redirect301To(str_replace('www.', '', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']));
-		}
-	}
-
-	/**
-	 * выполняет действие модуля
-	 * @param string $module_name
-	 * имя модуля
-	 * @param string $action
-	 * действие
-	 * @param array $param
-	 * параметры с которыми будет выполнено действие
-	 * @return string/array/obj
-	 * возвращает результат действия модуля
-	 */
-	public function StartModule($moduleName, $actionName = "index", $paramArray = array()) {
-		return $this->GetModule($moduleName)->Action($actionName, $paramArray);
-	}
-
-	/**
-	 * получить модуль из массива модулей, если он еще не создан то создает его
-	 * @param string $module_name
-	 * имя модуля
-	 * @return module
-	 * возвращает обьект модуля
-	 */
-	protected function GetModule($moduleName, $paramArray = array()) {
-		if (!isset($this->Modules[$moduleName]))
-			$this->Modules[$moduleName] = new module($moduleName, $paramArray);
-		$module = $this->Modules[$moduleName];
-		return $module;
-	}
-
-	/**
-	 * Доступ к модели модуля
-	 * @param string $moduleName
-	 * Имя модуля
-	 * @param string $modelType
-	 * Тип модели ( админ )
-	 * @return model
-	 * модель
-	 */
-	public function GetModuleModel($moduleName, $modelType) {
-		return $this->GetModule($moduleName)->GetModel($modelType);
-	}
-
-	// </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc=" Url and redirect ">
 
 	/**
@@ -298,6 +214,48 @@ class app {
 	 * пути до папок с классами
 	 * @var array
 	 */
+
+	/**
+	 * запускает модуль на основе данных из REQUEST
+	 */
+	public static function IndexRun() {
+		Redirect::RedirectDefault();
+		if (isset($_REQUEST['url'])) {
+			$param = $this->GetModelUrl()->GetRequestParamByUrl($_REQUEST['url']);
+			if (!$param) {
+				Redirect::Redirect301To('/404');
+			}
+			$_REQUEST+=(array) $param;
+		} elseif (!isset($_REQUEST['admin'])) {
+			$url = $this->GetModelUrl()->GetUrlByRequestParam(
+							isset($_REQUEST['module']) && $_REQUEST['module'] ? $_REQUEST['module'] : 'index', isset($_REQUEST['action']) ? $_REQUEST['action'] : 'index', $_REQUEST
+			);
+			if ($url) {
+				Redirect::Redirect301To($url);
+			}
+		}
+
+		return
+			Module::StartModule(
+				isset($_REQUEST['module']) && $_REQUEST['module'] ? $_REQUEST['module'] : 'index',
+				isset($_REQUEST['action']) ? $_REQUEST['action'] : 'index', $_REQUEST
+			);
+	}
+		/**
+	 * выполняет действие модуля
+	 * @param string $module_name
+	 * имя модуля
+	 * @param string $action
+	 * действие
+	 * @param array $param
+	 * параметры с которыми будет выполнено действие
+	 * @return string/array/obj
+	 * возвращает результат действия модуля
+	 */
+	public function StartModule($moduleName, $actionName = "index", $paramArray = array()) {
+		return Module::GetModule($moduleName)->Action($actionName, $paramArray);
+	}
+
 	static public $ClasPaths;
 
 	/**

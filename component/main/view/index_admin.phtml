@@ -4,7 +4,7 @@
     </head>
 	<body>
 		<h1 id="head">Панель управления</h1>
-		<?= app::I()->StartModule('modules', 'menu', array('admin' => '', 'view' => 'NO_TEMPLATE', 'id_module' => isset($id_module) ? $id_module : 0)); ?>
+		<?= Module::StartModule('modules', 'menu', array('admin' => '', 'view' => 'NO_TEMPLATE', 'id_module' => isset($id_module) ? $id_module : 0)); ?>
 		<div id="content" class="container_16 clearfix">
 			<? if (isset($page_h1)) { ?>
 				<h1>

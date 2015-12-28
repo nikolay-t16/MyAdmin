@@ -12,7 +12,17 @@
  * @author n.tereschenko
  */
 class Redirect {
-		/**
+
+	/**
+	 * redirect 301 from www.domen to domen
+	 */
+	public static function RedirectDefault() {
+		if (strpos($_SERVER['HTTP_HOST'], 'www.') === 0) {
+			Redirect::Redirect301To(str_replace('www.', '', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']));
+		}
+	}
+
+	/**
 	 * Редирект на модуль
 	 * @param string $moduleName
 	 * имя модуля
