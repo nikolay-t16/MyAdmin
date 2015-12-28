@@ -241,20 +241,7 @@ class App {
 				isset($_REQUEST['action']) ? $_REQUEST['action'] : 'index', $_REQUEST
 			);
 	}
-		/**
-	 * выполняет действие модуля
-	 * @param string $module_name
-	 * имя модуля
-	 * @param string $action
-	 * действие
-	 * @param array $param
-	 * параметры с которыми будет выполнено действие
-	 * @return string/array/obj
-	 * возвращает результат действия модуля
-	 */
-	public function StartModule($moduleName, $actionName = "index", $paramArray = array()) {
-		return Module::GetModule($moduleName)->Action($actionName, $paramArray);
-	}
+
 
 	static public $ClasPaths;
 
