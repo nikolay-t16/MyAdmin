@@ -8,7 +8,7 @@ class ControllerAdmin extends ControllerSuper {
 	 * @return ModelAdmin
 	 */
 	protected function GetModel($modelName = '') {
-		return app::I()->GetAdminModel($modelName ? $modelName : $this->ModelName);
+		return App::I()->GetAdminModel($modelName ? $modelName : $this->ModelName);
 	}
 
 	/**
@@ -16,7 +16,7 @@ class ControllerAdmin extends ControllerSuper {
 	 * @return ModelAdminModuleParam
 	 */
 	protected function GetModelModelRow() {
-		return app::I()->GetAdminModel('model_row');
+		return App::I()->GetAdminModel('model_row');
 	}
 
 	/**
@@ -24,7 +24,7 @@ class ControllerAdmin extends ControllerSuper {
 	 * @return ModelAdminGroupRights
 	 */
 	protected function GetModelRights() {
-		return app::I()->GetAdminModel('user_group_rights');
+		return App::I()->GetAdminModel('user_group_rights');
 	}
 
 	/**
@@ -32,7 +32,7 @@ class ControllerAdmin extends ControllerSuper {
 	 * @return ModelAdminUser
 	 */
 	protected function GetModelAdminUser() {
-		return app::I()->GetAdminModel('admin_user');
+		return App::I()->GetAdminModel('admin_user');
 	}
 
 	/**
@@ -108,7 +108,7 @@ class ControllerAdmin extends ControllerSuper {
 		}
 
 		$params = $this->GetModel()->GetAdminItem($param['id']);
-		$vParam['page_h1'] = '<a href="' . app::I()->MakeUrl($this->ModuleName, 'index',array('admin'=>'')) . '">' . $this->ModuleParam['param']['label_module'] . '</a> / ';
+		$vParam['page_h1'] = '<a href="' . App::I()->MakeUrl($this->ModuleName, 'index',array('admin'=>'')) . '">' . $this->ModuleParam['param']['label_module'] . '</a> / ';
 		if (!isset($param['id']) || !$param['id']) {
 			$vParam['page_h1'] .= 'Добавить';
 		} else {

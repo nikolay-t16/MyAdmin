@@ -26,7 +26,7 @@ class ModelAdminModule extends ModelAdmin {
      * @return model_admin
      */
     protected function GetModelShablon(){
-        return app::I()->GetAdminModel('module_shablon');
+        return App::I()->GetAdminModel('module_shablon');
     }
 
 

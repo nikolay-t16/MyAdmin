@@ -14,7 +14,7 @@ class ModelAdminContentTree extends ModelAdmin {
 
 	const P_ID = 'p_id';
 	const ITEMS_PER_PAGE = '10';
-	
+
 	protected $ModelTables = array(
 		'main' => array(),
 		'url' => array(),
@@ -25,7 +25,7 @@ class ModelAdminContentTree extends ModelAdmin {
 	 * @return ModelAdminUrl
 	 */
 	protected function GetModelUrl() {
-		return app::I()->GetAdminModel('url');
+		return App::I()->GetAdminModel('url');
 	}
 
 	//@TODO сделать добавление дополнительных данных в модели
@@ -68,7 +68,7 @@ class ModelAdminContentTree extends ModelAdmin {
 	public function GetAdminItem($idItem) {
 		$params['value']['main']	= $this->GetItem($idItem);
 		$params['value']['url']		= $this->GetModelUrl()->GetItemByParam(
-																	$this->ToBase(app::I()->_REQUEST['module']),
+																	$this->ToBase(App::I()->_REQUEST['module']),
 																	$idItem
 																);
 		$params['param']					= $this->GetModelModelRow()->GetItems($this->GetIdModel());
@@ -91,7 +91,7 @@ class ModelAdminContentTree extends ModelAdmin {
 			if($id){
 				$url_param=$param['url'];
 				$url_param['action']='index';
-				$url_param['module']=$this->GetModelUrl()->GetModuleIdByName($this->ToBase(app::I()->_REQUEST['module']));
+				$url_param['module']=$this->GetModelUrl()->GetModuleIdByName($this->ToBase(App::I()->_REQUEST['module']));
 				$url_param['item_id']=$id;
 
 			$this->GetModelUrl()->add($url_param);

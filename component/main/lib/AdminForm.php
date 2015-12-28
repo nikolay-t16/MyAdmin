@@ -28,7 +28,7 @@ class AdminForm extends FormConstructor {
 	 * @return ModelSlovar
 	 */
 	protected static function GetModelSlovar() {
-		return app::I()->GetModel('slovar');
+		return App::I()->GetModel('slovar');
 	}
 
 	/**
@@ -36,7 +36,7 @@ class AdminForm extends FormConstructor {
 	 * @return Model
 	 */
 	protected function GetModelTable() {
-		return app::I()->GetModel('model_table');
+		return App::I()->GetModel('model_table');
 	}
 
 	/**
@@ -174,7 +174,7 @@ class AdminForm extends FormConstructor {
 			$tag = $this->Label($param['label'], $param['name_fild']);
 		if (isset($param['param']) && !is_array($param['param']))
 			$p = WithStr::MakeAssocArray($param['param']);
-		$name = app::I()->GetModel('catalog_city_new')->GetCityNameForAutoComplete($value);
+		$name = App::I()->GetModel('catalog_city_new')->GetCityNameForAutoComplete($value);
 		$p['id'] = uniqid('auto_complete_select');
 		$span_id = uniqid('span_id');
 		$tag.= $this->MakeTextOnce($param, $value, $p);
@@ -217,13 +217,13 @@ class AdminForm extends FormConstructor {
 
 		if (isset($p['is_url'])) {
 
-			$url = app::I()->GetModel('url')->GetRequestParamByUrl($value);
+			$url = App::I()->GetModel('url')->GetRequestParamByUrl($value);
 			if ($url)
 				$tag.=
 								self::SimpleTag('br') .
 								self::ClouseTag(
 												'a', 'Посмотреть на сайте', array(
-										'href' => app::I()->MakeUrl($url['module'], $url['action'], array('id' => $url['id'])),
+										'href' => App::I()->MakeUrl($url['module'], $url['action'], array('id' => $url['id'])),
 										'target' => '_blank'
 												)
 				);
@@ -439,9 +439,9 @@ class AdminForm extends FormConstructor {
 		$options = array();
 		if (isset($p['model'], $p['func'])) {
 			if (isset($p['type']) && $p['type'] == 'admin') {
-				$model = app::I()->GetAdminModel($p['model']);
+				$model = App::I()->GetAdminModel($p['model']);
 			} else {
-				$model = app::I()->GetModel($p['model']);
+				$model = App::I()->GetModel($p['model']);
 			}
 			$func = $p['func'];
 			$options = $model->$func($p);
@@ -525,7 +525,7 @@ class AdminForm extends FormConstructor {
 	 * @return string
 	 */
 	public function SelectModel($param, $value = '') {
-		$models = app::I()->GetModel('models')->GetItems();
+		$models = App::I()->GetModel('models')->GetItems();
 		$select = array();
 		foreach ($models as $v) {
 			$select[$v['name']] = $v['name'];
@@ -668,7 +668,7 @@ class AdminForm extends FormConstructor {
 	 */
 	public function SelectFromSlovar($param, $value = 0) {
 		$p = $this->MakeParametrs($param['param']);
-		$slovar = app::I()->GetModel('slovar')->GetSlovarItems($p['id_slovar']);
+		$slovar = App::I()->GetModel('slovar')->GetSlovarItems($p['id_slovar']);
 		return $this->MakeSelect($slovar, $param['name_fild'], $param['label'], $value, 'name', 'id');
 	}
 

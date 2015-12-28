@@ -1,10 +1,10 @@
 <?
-$url_add = app::I()->MakeUrl(
+$url_add = App::I()->MakeUrl(
 				$module_name,
 				isset($it['add_action']) ? $it['add_action'] : 'add',
 				array('admin' => '', 'id' => $it['id'])
 );
-$url_del = app::I()->MakeUrl(
+$url_del = App::I()->MakeUrl(
 				$module_name,
 				isset($it['del_action']) ? $it['del_action'] : 'delete',
 				array('admin' => '', 'id' => $it['id'])

@@ -49,7 +49,7 @@ class ControllerAdminSlovar extends ControllerAdmin {
 		$vParam['id'] = $id;
 		$vParam['module_name'] = $this->ModuleName;
 		$item = $this->GetModel()->GetItem($id);
-		$vParam['page_h1'] = '<a href="' . app::I()->MakeUrl($this->ModuleName, 'index',array('admin'=>'')) . '">' . $this->ModuleParam['param']['label_module'] . '</a>/ ' . $item['name'];
+		$vParam['page_h1'] = '<a href="' . App::I()->MakeUrl($this->ModuleName, 'index',array('admin'=>'')) . '">' . $this->ModuleParam['param']['label_module'] . '</a>/ ' . $item['name'];
 		$vShab['admin_action_panel'] = $this->ViewPath . 'action_panel.phtml';
 		$vParam['items'] = $this->GetModel()->GetItems("p_id=$id order by name ASC");
 		$vShab['content'] = Config::ITEM_TEAMPLATE_PATH . 'items_content.phtml';

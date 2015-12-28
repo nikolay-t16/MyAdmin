@@ -48,7 +48,7 @@
 
                 <!-- Main nav -->
 
-                <?= app::I()->StartModule('modules', 'menu', array('admin' => '', 'view' => 'NO_TEMPLATE', 'id_module' => isset($id_module) ? $id_module : 0)); ?>
+                <?= App::I()->StartModule('modules', 'menu', array('admin' => '', 'view' => 'NO_TEMPLATE', 'id_module' => isset($id_module) ? $id_module : 0)); ?>
 
             </div>
 
@@ -56,7 +56,7 @@
             <div class="secNav">
                 <div class="secWrapper">
                     <?php if (isset($shablon_name['dop_menu'])) include ROOT_PATH . $shablon_name['dop_menu']; ?>
-                </div> 
+                </div>
 
                 <div class="clear"></div>
             </div>
@@ -64,7 +64,7 @@
         <!-- Sidebar ends -->
 
 
-        <!-- Content begins -->    
+        <!-- Content begins -->
         <div id="content">
             <?php if (isset($shablon_name['content'])) include ROOT_PATH . $shablon_name['content']; ?>
 

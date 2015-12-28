@@ -32,9 +32,9 @@ class ModelUser extends Model {
 
 	public function is_authtorize() {
 
-		if (isset(app::I()->_SESSION['admin_user']) && (
-						app::I()->_SESSION['admin_user']['os'] == $_SERVER['HTTP_USER_AGENT'] ||
-						app::I()->_SESSION['admin_user']['ip'] == $this->GetRealIp() ))
+		if (isset(App::I()->_SESSION['admin_user']) && (
+						App::I()->_SESSION['admin_user']['os'] == $_SERVER['HTTP_USER_AGENT'] ||
+						App::I()->_SESSION['admin_user']['ip'] == $this->GetRealIp() ))
 			return TRUE;
 		else
 			return false;

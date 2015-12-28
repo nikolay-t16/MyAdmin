@@ -121,7 +121,7 @@ class ModelSuper {
 			echo $query;
 		return mysql_query($query);
 		try {
-			return app::GetDb()->query($query);
+			return App::GetDb()->query($query);
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 		}

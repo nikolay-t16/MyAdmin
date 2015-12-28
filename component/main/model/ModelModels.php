@@ -29,7 +29,7 @@ class ModelModels extends Model {
 	public function GetItem($id) {
 		$res['model'] = parent::GetItem($id);
 		if (!$res['model']) {
-			app::error_report('не найдена модель c id "' . $id . '"');
+			App::error_report('не найдена модель c id "' . $id . '"');
 		}
 
 		$res['tables'] = $this->GetTableForModel($res['model'][$this->ModelTables['main']['ident']]);
@@ -48,7 +48,7 @@ class ModelModels extends Model {
 
 		$res['model'] = $this->GetItems("name='$name'", 1);
 		if (!$res['model']) {
-			app::error_report('не найдена модель "' . $name . '"');
+			App::error_report('не найдена модель "' . $name . '"');
 			echo '<pre>';
 			debug_print_backtrace();
 			echo '</pre>';

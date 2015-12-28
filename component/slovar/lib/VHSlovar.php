@@ -19,7 +19,7 @@ class VHSlovar extends TagConstructor {
 	}
 
 	public function AdminName($item, $field, $param) {
-		$url = app::I()->MakeUrl($param['module_name'], 'items', array('id' => $item[$param['id']], 'admin' => ''));
+		$url = App::I()->MakeUrl($param['module_name'], 'items', array('id' => $item[$param['id']], 'admin' => ''));
 		return $tag = self::ClouseTag('a', $item[$field], array('href' => $url));
 	}
 

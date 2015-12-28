@@ -40,14 +40,14 @@ class ModelModule extends Model {
 	 * @return model
 	 */
 	protected function GetShabModel() {
-		return app::I()->GetModel('module_shablon');
+		return App::I()->GetModel('module_shablon');
 	}
 	/**
 	 *
 	 * @return ModelModels
 	 */
 	protected function GetModelModels(){
-		return app::I()->GetModel('models');
+		return App::I()->GetModel('models');
 	}
 
 	/**
@@ -75,7 +75,7 @@ class ModelModule extends Model {
 	 * @return model_shablon
 	 */
 	public function GetModeleShablon() {
-		return app::I()->GetModel('module_shablon');
+		return App::I()->GetModel('module_shablon');
 	}
 
 	public function GetModuleNameById($idModule) {

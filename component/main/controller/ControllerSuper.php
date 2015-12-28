@@ -55,7 +55,7 @@ class ControllerSuper {
      * @return Model
      */
     protected function GetModel($modelName='') {
-        return app::I()->GetModel($modelName?$modelName:$this->ModelName);
+        return App::I()->GetModel($modelName?$modelName:$this->ModelName);
     }
 
     /**

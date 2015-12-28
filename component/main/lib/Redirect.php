@@ -32,7 +32,7 @@ class Redirect {
 	 * дополнительные параметры
 	 */
 	public static function RedirectToModule($moduleName, $actionName, $paramArray = array()) {
-		$url = app::I()->MakeUrl($moduleName, $actionName, $paramArray);
+		$url = App::I()->MakeUrl($moduleName, $actionName, $paramArray);
 		self::RedirectTo($url);
 	}
 

@@ -25,12 +25,12 @@ class ViewHelperItemsRow extends TagConstructor {
 	}
 
 	public function ContentTreeName($item, $field, $param) {
-		$url = app::I()->MakeUrl($param['module_name'], 'index', array('pid' => $item[$param['id']], 'admin' => ''));
+		$url = App::I()->MakeUrl($param['module_name'], 'index', array('pid' => $item[$param['id']], 'admin' => ''));
 		return $tag = self::ClouseTag('a', $item[$field], array('href' => $url));
 	}
 
 	public function ContentTreeNameCity($item, $field, $param) {
-		$url = app::I()->MakeUrl($param['module_name'], 'city_text', array('pid' => $item[$param['id']], 'admin' => ''));
+		$url = App::I()->MakeUrl($param['module_name'], 'city_text', array('pid' => $item[$param['id']], 'admin' => ''));
 		return $tag = self::ClouseTag('a', 'Город', array('href' => $url));
 	}
 

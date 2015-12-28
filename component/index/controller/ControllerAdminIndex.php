@@ -6,7 +6,7 @@ class ControllerAdminIndex extends ControllerAdmin {
   * @return ModelCity
   */
 	public function GetModel() {
-		return app::I()->GetModel('catalog_city_new');
+		return App::I()->GetModel('catalog_city_new');
 	}
 
 		public function IndexAction($param = array(), &$vParam = array(), &$vShab = array()) {

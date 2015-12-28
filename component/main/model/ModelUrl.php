@@ -17,7 +17,7 @@ class ModelUrl extends Model {
 	 * @return ModelModule
 	 */
 	protected static function GetModelModule() {
-		return app::I()->GetModel('module');
+		return App::I()->GetModel('module');
 	}
 
 	public function GetRequestParamByUrl($url) {

@@ -30,13 +30,13 @@ class ViewHelperModel extends TagConstructor {
 
 	public function SearchParamCell($item, $field, $param) {
 
-		$url = app::I()->MakeUrl($param['module_name'], 'baners', array('id' => $item['id'], 'admin' => ''));
+		$url = App::I()->MakeUrl($param['module_name'], 'baners', array('id' => $item['id'], 'admin' => ''));
 		return $tag = self::ClouseTag('a', 'Параметры поиска', array('href' => $url, 'title' => $item[$param['title_field']]));
 	}
 
 	public function ModelParamCell($item, $field, $param) {
 
-		$url = app::I()->MakeUrl($param['module_name'], 'param', array('id' => $item['id'], 'admin' => ''));
+		$url = App::I()->MakeUrl($param['module_name'], 'param', array('id' => $item['id'], 'admin' => ''));
 		return $tag = self::ClouseTag('a', 'Парметры модели', array('href' => $url, 'title' => $item[$param['title_field']]));
 	}
 

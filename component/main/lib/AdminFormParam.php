@@ -25,7 +25,7 @@ class AdminFormParam extends AdminForm {
 	 * @return ModelAdmin
 	 */
 	protected static function GetModelTabs() {
-		return app::I()->GetAdminModel('model_tabs');
+		return App::I()->GetAdminModel('model_tabs');
 	}
 
 	public function id($name, $value) {
@@ -46,7 +46,7 @@ class AdminFormParam extends AdminForm {
 
 	public function IdTab($name, $value) {
 		$atributs		 = array('style' => 'width:50px;');
-		$tabs				 = self::GetModelTabs()->GetItems('id_m=' . app::I()->_REQUEST['id'], 0, array('key_field' => 'id'));
+		$tabs				 = self::GetModelTabs()->GetItems('id_m=' . App::I()->_REQUEST['id'], 0, array('key_field' => 'id'));
 		$options[0]	 = 'Фикс';
 		if ($tabs)
 			foreach ($tabs as $tab) {

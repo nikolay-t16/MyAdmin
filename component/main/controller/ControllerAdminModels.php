@@ -50,13 +50,13 @@ class ControllerAdminModels extends ControllerAdmin {
 
 	public function AddParamAction($param, &$vParam = array(), &$vShab = array()) {
 		die;
-		if (isset(app::I()->_REQUEST['adm_param']))
-			if (app::I()->_REQUEST['adm_param']['old_field_name'][0]) {
+		if (isset(App::I()->_REQUEST['adm_param']))
+			if (App::I()->_REQUEST['adm_param']['old_field_name'][0]) {
 
-				if (app::I()->_REQUEST['adm_param']['old_field_name']) {
-					$param = $this->GetModel()->module_param_by_id(app::I()->_REQUEST['id_module']);
+				if (App::I()->_REQUEST['adm_param']['old_field_name']) {
+					$param = $this->GetModel()->module_param_by_id(App::I()->_REQUEST['id_module']);
 					$db = $param[0]['module_db'];
-					$this->GetModel()->alter_field($db, app::I()->_REQUEST['adm_param'], app::I()->_REQUEST['id_param']);
+					$this->GetModel()->alter_field($db, App::I()->_REQUEST['adm_param'], App::I()->_REQUEST['id_param']);
 
 					Redirect::RedirectToModule(
 							'modules',
@@ -75,9 +75,9 @@ class ControllerAdminModels extends ControllerAdmin {
 			}
 
 
-		if (isset(app::I()->_REQUEST['name'])) {
-			$vParam['name_field'] = app::I()->_REQUEST['name'];
-			$vParam['field_param'] = $this->GetModel()->module_field_param(app::I()->_REQUEST['id_module'], app::I()->_REQUEST['name']);
+		if (isset(App::I()->_REQUEST['name'])) {
+			$vParam['name_field'] = App::I()->_REQUEST['name'];
+			$vParam['field_param'] = $this->GetModel()->module_field_param(App::I()->_REQUEST['id_module'], App::I()->_REQUEST['name']);
 		}
 		$vShab['content'] = '/component/main/view/admin/new_field_form.phtml';
 	}

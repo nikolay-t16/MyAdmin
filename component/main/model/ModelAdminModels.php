@@ -13,7 +13,7 @@ class ModelAdminModels extends ModelAdmin {
 	 * @return ModelAdmin
 	 */
 	protected function GetModelTable() {
-		return app::I()->GetAdminModel('model_table');
+		return App::I()->GetAdminModel('model_table');
 	}
 
 	/**
@@ -21,7 +21,7 @@ class ModelAdminModels extends ModelAdmin {
 	 * @return ModelAdmin
 	 */
 	protected function GetModelTab() {
-		return app::I()->GetAdminModel('model_tabs');
+		return App::I()->GetAdminModel('model_tabs');
 	}
 
 	public function TableFilds($table = '') {

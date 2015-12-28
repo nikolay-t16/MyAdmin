@@ -80,7 +80,7 @@ class ControllerModule extends ControllerSuper {
             if ($_REQUEST['delete'])
                 $this->model->delete_module_param($_REQUEST['delete']);
             else {
-                $this->model->delete_fild_from_module(app::I()->_REQUEST['id'], app::I()->_REQUEST['name']);
+                $this->model->delete_fild_from_module(App::I()->_REQUEST['id'], App::I()->_REQUEST['name']);
             }
         }
 
@@ -126,26 +126,26 @@ class ControllerModule extends ControllerSuper {
 
     public function AddParamAction($param, &$vParam = array(), &$vShab = array()) {
 
-        if (isset(app::I()->_REQUEST['adm_param']))
-            if (app::I()->_REQUEST['adm_param']['old_field_name'][0]) {
+        if (isset(App::I()->_REQUEST['adm_param']))
+            if (App::I()->_REQUEST['adm_param']['old_field_name'][0]) {
 
-                if (app::I()->_REQUEST['adm_param']['old_field_name']) {
-                    $param = $this->model->module_param_by_id(app::I()->_REQUEST['id_module']);
+                if (App::I()->_REQUEST['adm_param']['old_field_name']) {
+                    $param = $this->model->module_param_by_id(App::I()->_REQUEST['id_module']);
                     $db = $param[0]['module_db'];
-                    $this->model->alter_field($db, app::I()->_REQUEST['adm_param'], app::I()->_REQUEST['id_param']);
+                    $this->model->alter_field($db, App::I()->_REQUEST['adm_param'], App::I()->_REQUEST['id_param']);
 
-                    header('location:' . view::make_admin_url('modules', array("action" => "add_param", "id_module" => app::I()->_REQUEST['id_module'], "name" => app::I()->_REQUEST['adm_param']['field_name'][0], 'id_param' => app::I()->_REQUEST['id_param'])));
+                    header('location:' . view::make_admin_url('modules', array("action" => "add_param", "id_module" => App::I()->_REQUEST['id_module'], "name" => App::I()->_REQUEST['adm_param']['field_name'][0], 'id_param' => App::I()->_REQUEST['id_param'])));
                 }
             } else {
-                $param = $this->model->module_param_by_id(app::I()->_REQUEST['id_module']);
+                $param = $this->model->module_param_by_id(App::I()->_REQUEST['id_module']);
                 $db = $param[0]['module_db'];
-                $this->model->add_field($db, app::I()->_REQUEST['adm_param']);
+                $this->model->add_field($db, App::I()->_REQUEST['adm_param']);
             }
 
 
-        if (isset(app::I()->_REQUEST['name'])) {
-            $vParam['name_field'] = app::I()->_REQUEST['name'];
-            $vParam['field_param'] = $this->model->module_field_param(app::I()->_REQUEST['id_module'], app::I()->_REQUEST['name']);
+        if (isset(App::I()->_REQUEST['name'])) {
+            $vParam['name_field'] = App::I()->_REQUEST['name'];
+            $vParam['field_param'] = $this->model->module_field_param(App::I()->_REQUEST['id_module'], App::I()->_REQUEST['name']);
         }
         $vShab['content'] = 'component/main/view/admin/new_field_form.phtml';
     }

@@ -16,14 +16,14 @@ class ModelAdminGroupRights extends ModelAdmin {
      * @return ModelAdminModule
      */
     protected function GetModelModule() {
-        return app::I()->GetAdminModel('module');
+        return App::I()->GetAdminModel('module');
     }
 
     /**
      * @return ModelAdminModuleAction
      */
     protected function GetModelModuleAction() {
-        return app::I()->GetAdminModel('module_action ');
+        return App::I()->GetAdminModel('module_action ');
     }
 
     /**
@@ -31,7 +31,7 @@ class ModelAdminGroupRights extends ModelAdmin {
      * @return ModelAdminUser
      */
     protected function GetModelAdminUser() {
-        return app::I()->GetAdminModel('admin_user');
+        return App::I()->GetAdminModel('admin_user');
     }
 
     public function GetAdminItem($idItem) {

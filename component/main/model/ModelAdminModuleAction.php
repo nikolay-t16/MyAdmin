@@ -7,7 +7,7 @@ class ModelAdminModuleAction extends ModelAdmin {
      * @return ModelAdminModule
      */
     protected function GetAdminModel() {
-        return app::I()->GetAdminModel('module');
+        return App::I()->GetAdminModel('module');
     }
     protected function DeleteAll($idModule) {
         $this->query(

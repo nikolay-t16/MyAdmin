@@ -3,7 +3,7 @@
     <p>
         <a style="margin-bottom:10px"
            class="ctr_padding ctr_add"
-           href="<?= app::I()->MakeUrl($_REQUEST['module'], 'add_param', array('id_module' => $_REQUEST['id']))
+           href="<?= App::I()->MakeUrl($_REQUEST['module'], 'add_param', array('id_module' => $_REQUEST['id']))
 ?>">
 			Добавить
         </a>
@@ -35,10 +35,10 @@
                 </td>
 <?php } ?>
                 <td>
-                    <a class="edit" href="<?= app::I()->MakeUrl($_REQUEST['module'], add_param, array('admin' => '', 'id_module' => $_REQUEST['id'], 'name' => $par['name_fild'], 'id_param' => $par['id'])) ?>">
+                    <a class="edit" href="<?= App::I()->MakeUrl($_REQUEST['module'], add_param, array('admin' => '', 'id_module' => $_REQUEST['id'], 'name' => $par['name_fild'], 'id_param' => $par['id'])) ?>">
 
                     </a>
-                    <a class="delete" href="javascript: Remove( '<?= 'поле ' . $par['name_fild'] . ' поле так же будет удалено из таблицы' ?>','<?= app::I()->MakeUrl($_REQUEST['module'], 'delete_param', array('admin', 'id' => $_REQUEST['id'], 'delete' => $par['id'], 'name' => $par['name_fild'])) ?>')">
+                    <a class="delete" href="javascript: Remove( '<?= 'поле ' . $par['name_fild'] . ' поле так же будет удалено из таблицы' ?>','<?= App::I()->MakeUrl($_REQUEST['module'], 'delete_param', array('admin', 'id' => $_REQUEST['id'], 'delete' => $par['id'], 'name' => $par['name_fild'])) ?>')">
 
                     </a>
 

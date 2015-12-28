@@ -56,7 +56,7 @@ class ModelContentTree extends Model {
 				if ($el_id == 1)
 					$url = '/';
 				else
-					$url = app::I()->MakeUrl('content_tree', 'index', array('id' => $el_id));
+					$url = App::I()->MakeUrl('content_tree', 'index', array('id' => $el_id));
 			} else
 				$url = '';
 			$res[] = array(

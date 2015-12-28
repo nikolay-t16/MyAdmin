@@ -15,7 +15,7 @@ class ModelAdminUrl extends ModelAdmin{
 	 * @return ModelAdminModule
 	 */
 	protected function GetModelModule() {
-		return app::I()->GetAdminModel('module');
+		return App::I()->GetAdminModel('module');
 	}
 
 	public function GetModuleIdByName($moduleName){

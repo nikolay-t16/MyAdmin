@@ -35,7 +35,7 @@ class MailSender {
 	 * @return ModelMailSender
 	 */
 	protected function GetModelMailSender() {
-		return app::I()->GetModel('mail_sender');
+		return App::I()->GetModel('mail_sender');
 	}
 
 	protected function __construct() {

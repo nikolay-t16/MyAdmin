@@ -1,9 +1,9 @@
 <? if (!isset($id)) { ?>
-	<a href="<?= app::I()->MakeUrl($module_name, 'add', array('admin' => '', 'id' => 0)) ?>">
+	<a href="<?= App::I()->MakeUrl($module_name, 'add', array('admin' => '', 'id' => 0)) ?>">
 		Добваить словарь
 	</a>
 <? } else { ?>
-	<a href="<?= app::I()->MakeUrl($module_name, 'add', array('admin' => '', 'id' => 0, 'p_id' => $id)) ?>">
+	<a href="<?= App::I()->MakeUrl($module_name, 'add', array('admin' => '', 'id' => 0, 'p_id' => $id)) ?>">
 		Добваить элемент в словарь
 	</a>
 <? } ?>

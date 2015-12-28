@@ -19,7 +19,7 @@ class ModelAdmin extends Model {
 	 * @return ModelAdminModuleParam
 	 */
 	protected function GetModelModelRow() {
-		return app::I()->GetAdminModel('model_row');
+		return App::I()->GetAdminModel('model_row');
 	}
 
 	protected $Tabs;
